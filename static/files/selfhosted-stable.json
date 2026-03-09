@@ -1,6 +1,6 @@
 [
    {
-    "timestamp": 1771481350000,
+    "timestamp": 1772701138000,
     "tags": ["Self-Hosted", "3.9.7-stable"],
     "heading": "Version 3.9.7-stable",
     "cards" : [
@@ -27,7 +27,11 @@
 "Fixed an issue where the fillable PDF JSON column did not provide sufficient space for editing JSON content.",
 
 "Fixed an issue where the header screen was not visible within the Validate Screen action.",
-"Fixed an issue with the Set and Remove property functionality in the textarea component."
+"Fixed an issue with the Set and Remove property functionality in the textarea component.",
+"Fixed an issue where saving triggered repeated Widget Update API calls.",
+"Fixed an issue where the hiddenColumnList was not updated when control data changed during save.",
+"Fixed an issue where widgets were updated incorrectly on app import due to an invalid DQ configuration.",
+"Fixed an issue where PDF Creator and DHQ File Storage components were duplicated without proper configuration."
         ]
       }
     ]
