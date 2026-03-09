@@ -1,0 +1,164 @@
+---
+title: Interactive Widgets
+sidebar_position: 4
+---
+
+# Interactive Widgets
+
+Widgets in DronaHQ can be **interactive**, allowing users to trigger actions directly from the UI rendered by the agent. These interactions enable the widget to send responses back to the agent, which can then continue the conversation flow or perform additional actions.
+
+Interactive widgets are useful when the agent needs **user confirmation, choices, or actions** before proceeding.
+
+Examples include:
+
+- Approving or rejecting a request
+- Selecting an option
+- Confirming a workflow step
+- Triggering follow-up actions
+- Providing feedback to the agent
+
+---
+
+## The `submit` Function
+
+Interactive widgets communicate with the agent using a function called **`submit`**.
+
+This function is provided automatically through the widget **props**.
+
+```jsx
+props.submit
+````
+
+The `submit` function acts as a **callback to the agent**. When called, it sends a response back to the LLM so the agent can continue processing.
+
+---
+
+## Function Signature
+
+```jsx
+submit(response: string): void
+```
+
+### Parameters
+
+| Parameter  | Type     | Description                                               |
+| ---------- | -------- | --------------------------------------------------------- |
+| `response` | `string` | The message or prompt that will be sent back to the agent |
+
+The string you send becomes the **next input for the agent**, allowing it to continue the workflow.
+
+---
+
+## Example: Request Action Widget
+
+Consider a scenario where the agent shows a widget for handling a request. The user can choose to:
+
+* Ignore the request
+* Delete the request
+* Approve and proceed
+
+Each action sends a different message back to the agent.
+
+```jsx
+export default function RequestActionWidget({ submit, request }) {
+  return (
+    <div>
+      <h3>User Request</h3>
+      <p>{request}</p>
+
+      <div style={{ display: "flex", gap: "8px" }}>
+        <button
+          onClick={() =>
+            submit("Don't need to do anything. Ignore the request.")
+          }
+        >
+          Ignore
+        </button>
+
+        <button
+          onClick={() =>
+            submit("Delete this request from the system.")
+          }
+        >
+          Delete
+        </button>
+
+        <button
+          onClick={() =>
+            submit("Please proceed with the request and mark it as approved.")
+          }
+        >
+          Proceed
+        </button>
+      </div>
+    </div>
+  )
+}
+```
+
+---
+
+## Interaction Flow
+
+The interactive workflow works as follows:
+
+1. The **agent displays a widget** to the user.
+2. The widget contains **interactive elements** such as buttons.
+3. The user performs an action.
+4. The widget calls `props.submit(response)`.
+5. The response is sent back to the **agent's LLM**.
+6. The agent continues the conversation or workflow based on that response.
+
+---
+
+## Example Interaction
+
+### Step 1 — Agent displays widget
+
+The agent shows a request approval widget.
+
+### Step 2 — User interacts
+
+User clicks **Proceed**.
+
+### Step 3 — Widget sends response
+
+```jsx
+submit("Please proceed with the request and mark it as approved.")
+```
+
+### Step 4 — Agent continues processing
+
+The LLM receives the message and continues the workflow accordingly.
+
+---
+
+## Best Practices
+
+When building interactive widgets:
+
+* Send **clear and descriptive responses** to the agent.
+* Use **buttons or action elements** for user interactions.
+* Ensure each action sends a **distinct response string**.
+* Keep interaction flows **simple and intuitive**.
+
+Example:
+
+Good response:
+
+```
+Approve the request and mark it as completed.
+```
+
+Less useful response:
+
+```
+Yes
+```
+
+Clear responses help the agent understand **exactly what action should be taken next**.
+
+---
+
+Interactive widgets allow DronaHQ agents to support **structured workflows, confirmations, and decision-based interactions**, enabling richer user experiences beyond simple text conversations.
+
