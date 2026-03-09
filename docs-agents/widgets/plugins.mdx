@@ -1,0 +1,148 @@
+---
+sidebar_position: 3
+title: 'Available Plugins'
+---
+
+The following plugins are available inside widget components.
+
+### React
+
+The React library is available globally as `React`.
+
+You can use standard React APIs and hooks when building your widget.
+
+Available hooks include:
+
+- `useState`
+- `useEffect`
+- `useMemo`
+- `useCallback`
+- `useRef`
+- `useReducer`
+- `useLayoutEffect`
+- `useTransition`
+- `useDeferredValue`
+- `Fragment`
+
+Example:
+
+```jsx
+module.exports.default =  function CounterWidget() {
+  const [count, setCount] = useState(0);
+  const data = React.useMemo(function(){
+    return {
+        "key":"sample data"
+    }
+  })
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </div>
+  );
+}
+```
+---
+
+### CrayonAI UI Components
+
+CrayonAI UI components are available through the `UI` plugin.
+
+These components can be used to build structured and interactive UI inside your widget.
+
+Example using a **Chart component**:
+
+```jsx
+module.exports.default = function SalesChartWidget({ data }) {
+  return (
+    <UI.Chart
+      type="bar"
+      data={data}
+      xKey="month"
+      yKey="sales"
+      height={300}
+    />
+  )
+}
+```
+
+Example input data:
+
+```json
+{
+  "data": [
+    { "month": "Jan", "sales": 120 },
+    { "month": "Feb", "sales": 200 },
+    { "month": "Mar", "sales": 150 }
+  ]
+}
+```
+
+For the full list of available components, refer to the CrayonAI UI documentation:
+
+[https://crayonai.org/ui/?path=/docs/components-bottomtray--docs](https://crayonai.org/ui/?path=/docs/components-bottomtray--docs)
+
+---
+
+### Icons (Lucide React)
+
+The `Icons` plugin provides access to icons from the **lucide-react** icon library.
+
+Icons can be used directly inside your widget component.
+
+Example:
+
+```jsx
+module.exports.default = function IconExample() {
+  const { Check, AlertCircle } = Icons
+
+  return (
+    <div>
+      <Check size={18} />
+      <AlertCircle size={18} />
+    </div>
+  )
+}
+```
+
+---
+
+### MarkdownText
+
+The `MarkdownText` plugin allows widgets to render Markdown content as formatted UI.
+
+This is useful when displaying AI-generated responses that contain Markdown formatting.
+
+Example:
+
+```jsx
+module.exports.default = function MarkdownWidget({ content }) {
+  return (
+    <div>
+      <MarkdownText>
+        {content}
+      </MarkdownText>
+    </div>
+  )
+}
+```
+
+Example input:
+
+```json
+{
+  "content": "## Summary\nThis response supports **markdown formatting**."
+}
+```
+
+---
+
+## Important Notes
+
+* Widgets must export a **default React component**.
+* The component receives input data through **props**.
+* Plugins are available globally and **do not require imports**.
+* Only the plugins provided by the runtime environment can be used inside widgets.
+
+These plugins allow widget developers to combine **React logic**, **CrayonAI UI components**, **icons**, and **Markdown rendering** to build rich and interactive UI components inside DronaHQ agents.

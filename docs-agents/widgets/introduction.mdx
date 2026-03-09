@@ -1,0 +1,54 @@
+---
+sidebar_position: 1
+title: 'Introduction'
+---
+
+# Widgets
+
+Widgets in **DronaHQ Agent Builder** allow developers to create **custom UI components** that AI agents can use to
+display structured responses to users.
+
+Instead of returning only text responses, agents can render **rich UI components** built using React. These widgets
+allow developers to define how AI-generated data should be displayed visually.
+
+Widgets act as a bridge between **AI-generated structured data** and **interactive UI elements**.
+
+---
+
+## Why Use Widgets
+
+Widgets allow you to:
+
+- Create **custom UI components** for AI responses
+- Display **structured information visually**
+- Build **interactive agent responses**
+- Control the **presentation layer of AI outputs**
+- Standardize how data appears across agent interactions
+
+---
+
+## How Widgets Work
+
+A widget defines how a piece of structured data should be rendered in the interface.
+
+The workflow looks like this:
+
+1. A user interacts with an **AI Agent**.
+2. The **AI generates structured data**.
+3. The structured data matches a **widget schema**.
+4. The widget receives the data as **props**.
+5. The **React component renders the UI**.
+
+---
+
+## Widget Architecture
+
+Each widget consists of three core elements:
+
+| Element                | Description                                                                                 |
+|------------------------|---------------------------------------------------------------------------------------------|
+| Default Data           | Example data object shown in the UI; helps define what kind of data the widget will use.    |
+| JSON Schema            | Describes the structure, fields, and types of data the AI should generate for the widget.   |
+| Code (React Component) | The React code that defines how the widget renders this data as a custom visual component.  |
+
+> [Know in detail how to create widgets](/agents/widgets/creating%20widgets/)  
