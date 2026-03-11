@@ -5,9 +5,9 @@ sidebar_position: 4
 
 # Interactive Widgets
 
-Widgets in DronaHQ can be **interactive**, allowing users to trigger actions directly from the UI rendered by the agent. These interactions enable the widget to send responses back to the agent, which can then continue the conversation flow or perform additional actions.
+Widgets in DronaHQ can be **interactive**, allowing users to trigger actions directly from the UI rendered by the agent. These interactions enable the widget to send structured responses back to the agent, which can then continue the conversation flow or perform additional actions.
 
-Interactive widgets are useful when the agent needs **user confirmation, choices, or actions** before proceeding.
+Interactive widgets are especially useful when the agent needs **user confirmation, choices, or actions** before proceeding.
 
 Examples include:
 
@@ -27,25 +27,29 @@ This function is provided automatically through the widget **props**.
 
 ```jsx
 props.submit
-````
+```
 
-The `submit` function acts as a **callback to the agent**. When called, it sends a response back to the LLM so the agent can continue processing.
+The `submit` function acts as a **callback to the agent**. When called, it sends a structured response object back to the LLM so the agent can continue processing.
 
 ---
 
 ## Function Signature
 
 ```jsx
-submit(response: string): void
+submit(response: {
+  title: string,
+  message: string
+}): void
 ```
 
 ### Parameters
 
-| Parameter  | Type     | Description                                               |
-| ---------- | -------- | --------------------------------------------------------- |
-| `response` | `string` | The message or prompt that will be sent back to the agent |
+| Parameter  | Type     | Description                                                                          |
+| ---------- | -------- | ------------------------------------------------------------------------------------ |
+| `title`    | `string` | The text that will be displayed in the chat window to the user.                      |
+| `message`  | `string` | The message or prompt that will actually be passed back to the agent for processing. |
 
-The string you send becomes the **next input for the agent**, allowing it to continue the workflow.
+The `title` controls what the user sees in the chat as their action, while `message` is used for the agent's workflow logic.
 
 ---
 
@@ -57,7 +61,7 @@ Consider a scenario where the agent shows a widget for handling a request. The u
 * Delete the request
 * Approve and proceed
 
-Each action sends a different message back to the agent.
+Each action sends a different object back to the agent via `submit`, containing both the display `title` and the full `message` for the agent to process.
 
 ```jsx
 export default function RequestActionWidget({ submit, request }) {
@@ -69,7 +73,10 @@ export default function RequestActionWidget({ submit, request }) {
       <div style={{ display: "flex", gap: "8px" }}>
         <button
           onClick={() =>
-            submit("Don't need to do anything. Ignore the request.")
+            submit({
+              title: "Ignore",
+              message: "Don't need to do anything. Ignore the request."
+            })
           }
         >
           Ignore
@@ -77,7 +84,10 @@ export default function RequestActionWidget({ submit, request }) {
 
         <button
           onClick={() =>
-            submit("Delete this request from the system.")
+            submit({
+              title: "Delete",
+              message: "Delete this request from the system."
+            })
           }
         >
           Delete
@@ -85,7 +95,10 @@ export default function RequestActionWidget({ submit, request }) {
 
         <button
           onClick={() =>
-            submit("Please proceed with the request and mark it as approved.")
+            submit({
+              title: "Proceed",
+              message: "Please proceed with the request and mark it as approved."
+            })
           }
         >
           Proceed
@@ -100,14 +113,14 @@ export default function RequestActionWidget({ submit, request }) {
 
 ## Interaction Flow
 
-The interactive workflow works as follows:
+The interactive workflow now works as follows:
 
 1. The **agent displays a widget** to the user.
 2. The widget contains **interactive elements** such as buttons.
 3. The user performs an action.
-4. The widget calls `props.submit(response)`.
-5. The response is sent back to the **agent's LLM**.
-6. The agent continues the conversation or workflow based on that response.
+4. The widget calls `props.submit({ title, message })`.
+5. The `title` is displayed in the chat as the user's action, and the `message` is sent back to the **agent's LLM**.
+6. The agent continues the conversation or workflow based on that `message`.
 
 ---
 
@@ -124,12 +137,15 @@ User clicks **Proceed**.
 ### Step 3 — Widget sends response
 
 ```jsx
-submit("Please proceed with the request and mark it as approved.")
+submit({
+  title: "Proceed",
+  message: "Please proceed with the request and mark it as approved."
+})
 ```
 
 ### Step 4 — Agent continues processing
 
-The LLM receives the message and continues the workflow accordingly.
+The chat displays **Proceed** as the user's input, and the LLM receives the provided `message` to continue the workflow accordingly.
 
 ---
 
@@ -137,26 +153,32 @@ The LLM receives the message and continues the workflow accordingly.
 
 When building interactive widgets:
 
-* Send **clear and descriptive responses** to the agent.
+* Send **clear and descriptive titles** for chat display and **detailed messages** for the agent.
 * Use **buttons or action elements** for user interactions.
-* Ensure each action sends a **distinct response string**.
+* Ensure each action sends a **distinct response object** with both `title` and `message`.
 * Keep interaction flows **simple and intuitive**.
 
 Example:
 
-Good response:
+Good object:
 
-```
-Approve the request and mark it as completed.
-```
-
-Less useful response:
-
-```
-Yes
+```json
+{
+  "title": "Approve",
+  "message": "Approve the request and mark it as completed."
+}
 ```
 
-Clear responses help the agent understand **exactly what action should be taken next**.
+Less useful object:
+
+```json
+{
+  "title": "Yes",
+  "message": "Yes"
+}
+```
+
+Clear, distinct titles and messages help the agent understand **exactly what action should be taken next**, while the chat remains user-friendly.
 
 ---
 
