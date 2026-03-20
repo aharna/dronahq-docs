@@ -1,9 +1,50 @@
-[ 
+[ {
+ "timestamp": 1773764289000,
+"tags": ["Control", "Action"],  
+"heading": "",
+"cards": [{
+  "title":"Enhanced",
+  "type":"improved",
+  "points":
+      [
+        "Enhanced Radio control by adding support for dynamic properties.",
+
+"Enhanced Color Picker by adding support for dynamic properties.",
+
+"Enhanced Date Range control by adding support for dynamic properties.",
+
+"Enhanced Phone control by adding support for dynamic properties.",
+
+"Enhanced Date control by adding support for dynamic properties.",
+
+"Enhanced Switch Group control by adding support for dynamic properties."
+      ]
+    },{
+      "title": "Fixed",
+      "type": "fixed",
+      "points": [
+"Fixed UI issues in the Table Grid filter sidebar and selected row checkbox behavior.",
+
+"Fixed an issue where focusout was not triggered on pressing Enter in Numeric controls.",
+
+"Fixed an issue where focusout was not triggered on pressing Enter in Currency controls.",
+
+"Fixed an issue where focusout was not triggered on pressing Enter in Numeric and Currency controls within Focus Control."
+      ]
+    }
+  ]
+},
     {
 "timestamp": 1771005264000,
 "tags": ["Control", "Action"],  
 "heading": "",
 "cards": [{
+  "title":"Enhanced",
+  "type":"improved",
+  "points":[
+    "Enhanced Variable API by adding logic to remove null or empty parameters from requests."
+  ]
+  },{
       "title": "Fixed",
       "type": "fixed",
       "points": [
@@ -45,7 +86,13 @@
 
 "Enhanced Table Grid with auto row height based on data length.",
 
-"Enhanced charts to allow the use of CSS variables in JSON editor properties."
+"Enhanced charts to allow the use of CSS variables in JSON editor properties.",
+"Enhanced Checkbox control by adding support for dynamic properties.",
+
+"Enhanced Dropdown control by adding support for dynamic properties.",
+
+"Enhanced Numeric control by adding support for dynamic properties."
+
       ]
     },
     {
@@ -147,6 +194,7 @@
 "Enhanced the date component by adding icon support.",
 
 "Enhanced the numeric input by adding icon support and improving mouse-wheel handling."
+
       ]
     },
       {
