@@ -1,5 +1,21 @@
 [
    {
+    "timestamp": 1774023489000,
+    "tags": ["Self-Hosted", "3.9.7-stable"],
+    "heading": "Version 3.9.7-stable",
+    "cards" : [
+      
+      { "title": "Fixed",
+        "type": "fixed",
+        "points": [
+          "Fixed an issue where Git operations caused high RAM and CPU consumption.",
+
+"Fixed version comparison logic during publish to ensure accurate version handling."
+        ]
+      }
+    ]
+  },
+   {
     "timestamp": 1772701138000,
     "tags": ["Self-Hosted", "3.9.7-stable"],
     "heading": "Version 3.9.7-stable",

@@ -1,6 +1,6 @@
 [
    {
-    "timestamp": 1771481350000,
+    "timestamp": 1773764289000,
     "tags": [
       "Self-Hosted",
       "3.10.0-edge"
@@ -11,29 +11,63 @@
         "title": "Added",
         "type": "added",
         "points": [
-          "Added support for configuring delay tasks within automation workflows.",
-"Added an option to exclude parameters with empty or null values in REST API Data Queries.",
-"Added live interaction support in the builder for controls and Data Queries."
+         "Added support for delay task functionality.",
+
+"Added support to skip passing parameters with empty or null values in REST API DQ.",
+
+"Added live interaction capabilities in the builder for controls and DQs.",
+
+"Added a new onboarding flow for self-hosted environments.",
+
+"Added catalog deletion functionality with validation to prevent invalid deletions."
         ]
       },
       {
         "title":"Enhancements",
         "type": "improved",
         "points": [
-          "Enhanced automation search functionality to include matching by Automation ID."
+         "Enhanced automation search functionality to include matching by automation ID.",
+
+"Enhanced screen scrolling behavior when the left sidebar is opened and improved handling of the Add Task popup for empty action flows.",
+
+"Enhanced the delete confirmation UI for Action Tasks and the Studio homepage, including better handling of recurring events."
         ]
       },
       {
         "title": "Fixed",
         "type": "fixed",
         "points":[
-          "Fixed an issue where nested controls were not searchable from the sidebar and top bar.",
-"Fixed a UI issue with the 'Add to Git' option in the Settings dropdown.",
+         "Fixed an issue where nested controls search did not work correctly in the sidebar and top bar.",
+
+"Fixed a UI issue with the 'Add to Git' option in the settings dropdown.",
+
 "Fixed an issue where global variables with a value of 0 were incorrectly converted to empty strings.",
+
 "Fixed an issue where page scrolling occurred even when 'Fit to Screen' was applied to a control.",
+
 "Fixed an issue where the required asterisk was not displayed correctly after page re-render.",
-"Fixed an issue where TableGrid row selection was not working on Public URLs.",
-"Fixed an issue where PDF Creator and DHQ File Storage were duplicated without proper configuration."
+
+"Fixed an issue where TableGrid row selection did not work on Public URLs.",
+
+"Fixed an issue where PDF Creator and DHQ File Storage were duplicated without proper configuration.",
+
+"Fixed inconsistent behavior of manual delete queries between Preview and Live environments.",
+
+"Fixed an issue where hidden Column List was not updated after saving control data changes.",
+
+"Fixed an issue where saving triggered repeated Widget Update API calls.",
+
+"Fixed an issue where widgets were incorrectly updated during app import due to invalid DQ configuration.",
+
+"Fixed schema approval response handling for Veda AI in the frontend.",
+
+"Fixed version comparison logic during publish to ensure accurate version handling.",
+
+"Fixed vulnerabilities identified by Docker Scout in the project.",
+
+"Fixed an issue where JavaScript references were converted to variable values after Save & Test.",
+
+"Fixed an issue where Git operations caused high RAM and CPU consumption."
         ]
       }
     ]
