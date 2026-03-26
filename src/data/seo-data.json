@@ -1,0 +1,1203 @@
+[
+  {
+    "slug": "/agents/getting-started/chat-interface",
+    "title": "Customize AI agent chat interface in DronaHQ",
+    "description": "Learn how to configure the DronaHQ AI agent chat interface, including agent name, welcome message, suggested prompts, file upload, notices, branding, and the embedded chat experience users interact with.",
+    "keywords": "AI agent chat interface, DronaHQ chat UI, customize chat widget, suggested prompts, embedded agent chat",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What can I customize in the DronaHQ chat interface?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can customize the display name, initial message, suggested prompts, placeholder text, file upload, feedback controls, branding, dismissible notices, and footer text in the agent chat interface."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the chat interface different from channel-based triggers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The chat interface is the embedded in-app experience, while channels like WhatsApp, Instagram, and Facebook Messenger let the same agent operate over external messaging surfaces."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Customize the AI agent chat interface in DronaHQ",
+      "description": "Step-by-step guide to configure the DronaHQ AI agent chat interface",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Open chat interface settings",
+          "text": "Go to your agent configuration in DronaHQ and open the Chat Interface section."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Set core messages",
+          "text": "Configure the display name, welcome message, placeholder text, and footer content for the agent."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Add suggested prompts",
+          "text": "Create suggested messages that help users start common conversations faster."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Adjust interface options",
+          "text": "Enable or disable file upload, feedback controls, branding, and notice settings based on your use case."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Save and preview",
+          "text": "Save the configuration and test the embedded agent chat experience in your app."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/getting-started/credit-usage",
+    "title": "AI agent pricing and credit usage",
+    "description": "Learn how credits are calculated in DronaHQ Agents across model input and output tokens, knowledge base usage, file parsing, crawling, text extraction, and supported model pricing.",
+    "keywords": "DronaHQ credits, AI credit usage, token pricing, knowledge base credits, agent billing",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How are AI credits calculated in DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Credits are calculated from model input and output tokens, along with platform operations such as knowledge base retrieval, file parsing, URL crawling, and text extraction."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do knowledge base operations use credits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Crawling URLs, processing document pages, and generating embeddings for knowledge base content consume credits separately from model token usage."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Understand AI agent credit usage in DronaHQ",
+      "description": "Step-by-step guide to review how credits are consumed across DronaHQ Agents features",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Review model usage",
+          "text": "Check how input and output token usage contributes to overall credit consumption for the selected model."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Review knowledge operations",
+          "text": "Understand how crawling, parsing, text extraction, and embedding generation add to credit usage."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Compare pricing by model",
+          "text": "Use the pricing information to understand how different models affect overall credit consumption."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Plan usage for your workflow",
+          "text": "Estimate credit usage across instructions, tools, knowledge base operations, and channel activity before deploying the agent."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/getting-started/instruction",
+    "title": "AI agent instructions: best practices, examples, and template",
+    "description": "Learn how to write effective AI agent instructions in DronaHQ so your agent knows its role, tone, boundaries, tool behavior, knowledge usage, and how to respond reliably across real workflows.",
+    "keywords": "AI agent instructions, write agent instructions, DronaHQ instruction guide, agent behavior design, instruction template",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What should AI agent instructions include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI agent instructions should define the agent's role, task boundaries, tone, expected behavior, tool-use rules, knowledge access, response format, and how to handle ambiguity, low confidence, or escalation. A good instruction set helps the agent act consistently across real workflows instead of responding like a generic chatbot."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are agent instructions different from prompts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agent instructions define the agent's ongoing behavior, rules, and operating context. Prompts are the task-specific inputs a user sends during a conversation. In simple terms, instructions shape how the agent should behave every time, while prompts tell it what to work on in a given moment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long should agent instructions be?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agent instructions should be as detailed as needed to make the agent reliable, but not so long that they become repetitive, conflicting, or hard to follow. The goal is clarity, structure, and coverage of important behaviors rather than length for its own sake."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are common mistakes in writing agent instructions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common mistakes include giving the agent a vague role, mixing too many rules into one block, leaving tool usage undefined, skipping edge cases, not specifying boundaries, and failing to explain how the agent should respond when it is unsure. Weak instructions often make the agent sound generic or behave inconsistently."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should agent instructions include tool-use rules?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. If an agent can use tools, the instructions should explain when to use them, what each tool is for, and any limits or precautions around tool execution. This helps the agent know when to fetch data, take action, ask for confirmation, or avoid unnecessary tool calls."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you handle uncertainty in agent instructions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agent instructions should tell the agent what to do when the input is unclear, the answer is uncertain, or the request falls outside its scope. This often includes asking clarifying questions, avoiding unsupported claims, escalating when needed, or clearly stating that more information is required."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Write AI agent instructions in DronaHQ",
+      "description": "Step-by-step guide to create effective instructions for DronaHQ agents",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Define the agent role",
+          "text": "Start by describing who the agent is and what job it is responsible for."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Set response style",
+          "text": "Specify tone, formatting preferences, and how the agent should communicate with users."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Add boundaries and rules",
+          "text": "Define what the agent can do, what it must avoid, and how to behave in restricted scenarios."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Guide knowledge and tool use",
+          "text": "Explain which tools or knowledge sources the agent should use and under what conditions."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Handle edge cases",
+          "text": "Add instructions for ambiguity, low confidence, unsupported requests, and escalation paths."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Test and refine",
+          "text": "Review the agent behavior in practice and improve the instructions based on observed responses."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/getting-started/introduction",
+    "title": "Introduction to building AI agents on DronaHQ",
+    "description": "Get started with DronaHQ Agents and learn how to build AI agents that reason over context, use tools, respond through chat or business channels, and run real workflows across your systems.",
+    "keywords": "DronaHQ Agents, AI agents platform, build AI agents, agentic workflows, business automation agents",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DronaHQ Agents are AI agents that can reason over context, use tools, retrieve knowledge, and execute real workflows across business systems. They are designed to do more than answer questions by helping teams automate tasks, update systems, and handle operational work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are DronaHQ Agents different from a basic chatbot or agent framework?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DronaHQ Agents are built for execution, not just conversation. Along with model reasoning, they include structured interfaces, triggers, tools, knowledge base, guardrails, and traces so agents can operate safely across apps, databases, APIs, and external business systems."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do I need to get started with DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To get started, you need a DronaHQ account and access to DronaHQ Agents. From there, you can create an agent, add instructions, connect tools or knowledge sources, choose where the agent should run, and begin testing it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What core components can I configure in a DronaHQ Agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A DronaHQ Agent can be configured with instructions, tools, triggers, knowledge base, and safety controls. Together, these help define what the agent should do, what data or systems it can access, how it gets activated, and how it stays reliable in production."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can DronaHQ Agents run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DronaHQ Agents can run inside an embedded chat interface as well as through external channels and triggers such as WhatsApp, Instagram, Facebook Messenger, email, webhooks, scheduled runs, and connected business events."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can DronaHQ Agents work with company data and business tools?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. DronaHQ Agents can connect to internal databases, APIs, enterprise tools, and knowledge sources so they can retrieve information, take actions, and complete tasks using approved business context."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do DronaHQ Agents stay grounded and safe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DronaHQ Agents can use a knowledge base to ground responses in approved sources, tools to work with live systems, and guardrails to control what goes into and comes out of the model. Traces also help teams inspect how the agent reasoned, what tools it used, and how each run performed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What kinds of workflows can I build with DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can build agents for use cases such as lead qualification, customer support, reconciliation, appointment scheduling, internal knowledge assistance, IT service tasks, and other workflows that need both reasoning and action across connected systems."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Get started with DronaHQ Agents",
+      "description": "Step-by-step guide to set up your first AI agent in DronaHQ",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Open DronaHQ Agents",
+          "text": "Sign in to DronaHQ and open the Agents section to begin setup."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Create an agent",
+          "text": "Start a new agent and define its basic purpose and operating context."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Add instructions and tools",
+          "text": "Configure the agent instructions and connect the tools or knowledge sources it should use."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Choose a trigger or channel",
+          "text": "Select how the agent should start, such as chat, webhook, scheduler, or business messaging channels."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Test and deploy",
+          "text": "Run tests, review the responses, and deploy the agent into your chosen app or workflow."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/getting-started/keywords",
+    "title": "What are keywords in Agents and how to use runtime variables and context in AI instructions",
+    "description": "Learn how predefined keywords work in DronaHQ Agents so you can inject logged-in user details, runtime context, and agent state into instructions and make responses more context-aware.",
+    "keywords": "agent keywords, DronaHQ keywords, predefined variables, runtime context, instruction variables",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are keywords in DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Keywords are predefined variables that expose runtime details such as logged-in user information, agent context, and other dynamic values inside agent instructions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are keywords useful in agent instructions?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Keywords help you make agent behavior more context-aware by injecting live values into instructions instead of hardcoding them."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Use agent keywords in DronaHQ instructions",
+      "description": "Step-by-step guide to add runtime variables and context inside DronaHQ agent instructions",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Review available keywords",
+          "text": "Check the predefined keywords exposed by DronaHQ for logged-in users, runtime context, and agent state."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Insert keywords into instructions",
+          "text": "Reference the relevant keywords inside the instruction block where contextual information is needed."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Use keywords for dynamic behavior",
+          "text": "Apply the variables to personalize responses, enforce context, or guide actions based on the current user or session."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Test with real sessions",
+          "text": "Run the agent in a real or preview environment to confirm that the keywords resolve correctly at runtime."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/getting-started/semantic-query",
+    "title": "Natural language to SQL: use semantic query for structured data access",
+    "description": "Learn how Semantic Query in DronaHQ lets agents turn natural-language questions into structured queries so users can retrieve data from databases and APIs without writing SQL themselves.",
+    "keywords": "semantic query, natural language to SQL, structured data query, DronaHQ semantic query, AI data retrieval",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Semantic Query do in DronaHQ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Semantic Query helps the agent convert natural-language questions into executable structured queries against databases or APIs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do users need to know SQL to use Semantic Query?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Semantic Query is designed so end users can ask questions in natural language without understanding SQL syntax or the underlying schema."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Use Semantic Query in DronaHQ Agents",
+      "description": "Step-by-step guide to enable natural-language access to structured data with Semantic Query",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Connect a data source",
+          "text": "Start by connecting the structured data source or API that will be queried."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Enable Semantic Query",
+          "text": "Configure the Semantic Query capability so user intent can be translated into query logic."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Map output handling",
+          "text": "Define how generated query results should be returned to the user or used by the agent."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Test natural-language prompts",
+          "text": "Ask representative questions and verify that the returned data matches the intended request."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/getting-started/tools-overview",
+    "title": "AI agent tools in DronaHQ: connect actions, data, and external systems",
+    "description": "Learn how tools work in DronaHQ Agents, from built-in capabilities to connected services, so your agent can fetch data, trigger actions, and do more than just generate text.",
+    "keywords": "DronaHQ tools, AI agent tools, built-in tools, agent integrations, tool calling",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are tools in DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tools are built-in capabilities and connected services that let a DronaHQ agent retrieve data, take actions, and interact with external systems."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do tools matter for AI agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tools let an agent do more than generate text by giving it the ability to read data, trigger workflows, and execute useful actions across systems."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Use tools in DronaHQ Agents",
+      "description": "Step-by-step guide to connect tools and actions to a DronaHQ AI agent",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Open tool configuration",
+          "text": "Go to the agent setup in DronaHQ and open the Tools section."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Add built-in or connected tools",
+          "text": "Choose the tools the agent should use, including platform capabilities and connected services."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Define when tools should be used",
+          "text": "Guide the agent through instructions that explain when to call a tool and what kind of task it supports."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Test tool execution",
+          "text": "Run sample prompts and verify that the agent uses the tools correctly and returns the expected output."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/guardrails/introduction",
+    "title": "AI agent guardrails in DronaHQ: control prompts, outputs, and policy enforcement",
+    "description": "Learn how guardrails work in DronaHQ Agents to control what goes into the model, what comes out of it, and how your agent stays safe, compliant, and dependable in production.",
+    "keywords": "AI guardrails, DronaHQ guardrails, agent safety, prompt safety, output safety",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are guardrails in DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Guardrails are safety and policy controls that manage how inputs and outputs are handled so the agent behaves in a safe, compliant, and reliable way."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do guardrails apply only to outputs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Guardrails can apply to both incoming prompts and outgoing responses, depending on the configured policies."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Set up guardrails in DronaHQ Agents",
+      "description": "Step-by-step guide to apply prompt and output safety controls in DronaHQ Agents",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Open guardrails configuration",
+          "text": "Go to your agent settings in DronaHQ and open the Guardrails section."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Choose prompt and output policies",
+          "text": "Select the policy types you want to apply to incoming messages and generated responses."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Configure rule coverage",
+          "text": "Adjust the rules based on your privacy, safety, and operational requirements."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Test policy behavior",
+          "text": "Run prompts through the agent and verify that unsafe inputs or outputs are handled correctly."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/guardrails/output-policy",
+    "title": "AI agent guardrails: control prompts, outputs, and safety policies",
+    "description": "Learn how to configure guardrails output policy that validates AI-generated responses before they reach users to reduce hallucinations, data leaks, and unsafe output.",
+    "keywords": "output policy, DronaHQ output policy, AI response validation, hallucination prevention, safe AI output",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Output Policy do in DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Output Policy checks the model's generated response before it reaches the end user so unsafe, inaccurate, or restricted output can be blocked or controlled."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is Output Policy important?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It acts as a final validation layer to reduce hallucinations, prevent data leakage, and maintain response quality and professionalism."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Configure Output Policy in DronaHQ Agents",
+      "description": "Step-by-step guide to configure output validation rules for AI agent responses",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Open guardrail settings",
+          "text": "Go to the Guardrails section for your agent and open the Output Policy configuration."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Choose validation rules",
+          "text": "Enable the output checks that match your safety, privacy, and compliance requirements."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Define policy behavior",
+          "text": "Set how the system should respond when output violates the configured rules."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Test and review responses",
+          "text": "Run sample prompts and verify that unsafe or restricted outputs are handled as expected."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/guardrails/prompt-policy",
+    "title": "AI agent prompt protection: block injection, unsafe input, and policy risks",
+    "description": "Learn how Prompt Policy in DronaHQ scans incoming user messages to protect against prompt injection, unsafe content, privacy risks, and policy violations.",
+    "keywords": "prompt policy, DronaHQ prompt policy, prompt injection protection, AI safety, input validation",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does Prompt Policy do in DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Prompt Policy scans and evaluates incoming user prompts before agent execution to reduce risks such as prompt injection, unsafe content, and privacy-related issues."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Prompt Policy be customized?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Prompt Policy includes specialized scanners that can be enabled or disabled based on your security and operational requirements."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Configure Prompt Policy in DronaHQ Agents",
+      "description": "Step-by-step guide to set prompt validation rules for DronaHQ agents",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Open guardrail settings",
+          "text": "Go to the Guardrails section in your agent configuration and open Prompt Policy."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Select input scanners",
+          "text": "Choose the scanners and checks you want to apply to incoming user messages."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Adjust policy coverage",
+          "text": "Enable or disable individual scanners depending on your privacy, safety, and compliance needs."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Validate with test prompts",
+          "text": "Run sample prompts to confirm that risky or non-compliant inputs are intercepted correctly."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/triggers/DronaHQ Triggers",
+    "title": "Event-driven AI agents: trigger agents from Gmail, Slack, GitHub, and more",
+    "description": "Learn how DronaHQ Triggers connect your AI agent to Gmail, Slack, GitHub, Salesforce, and 145+ platforms so it can start from real business events, not just chat messages.",
+    "keywords": "DronaHQ Triggers, agent triggers, platform triggers, Gmail trigger, Slack trigger, event-driven automation",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are DronaHQ Triggers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DronaHQ Triggers are platform-specific integrations that let an AI agent start from events in connected services such as Gmail, Slack, GitHub, and other business tools."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are DronaHQ Triggers different from chat channels?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chat channels like WhatsApp or Instagram are conversation surfaces, while DronaHQ Triggers start the agent from business events in connected platforms such as emails, tickets, messages, or records."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Add DronaHQ Triggers to an AI agent",
+      "description": "Step-by-step guide to connect business-event triggers to a DronaHQ AI agent",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Open the agent",
+          "text": "Go to your agent in DronaHQ and open its trigger settings."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Add a DronaHQ Trigger",
+          "text": "Click Add Trigger and choose DronaHQ Triggers."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Authenticate the platform",
+          "text": "Connect the external service account such as Gmail, Slack, GitHub, or another supported platform."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Choose the event",
+          "text": "Select the platform event that should activate the agent and apply any filters if needed."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Save and verify",
+          "text": "Save the trigger and confirm that the agent starts when the selected event occurs."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/triggers/inbuilt-triggers/facebook",
+    "title": "AI agents for Facebook Messenger: run conversations over Messenger",
+    "description": "Learn how to use Facebook Messenger as a trigger in DronaHQ so your AI agent can operate over Messenger conversations instead of only inside an embedded chat interface.",
+    "keywords": "Facebook Messenger trigger, Messenger bot, DronaHQ Facebook trigger, Meta webhook, omnichannel agent",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does the Facebook Messenger trigger do in DronaHQ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It lets your AI agent operate through Facebook Messenger conversations so users can interact with the same agent outside the embedded app chat interface."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Facebook Messenger treated as a chat channel for the agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Facebook Messenger acts as an external conversation channel through which the agent can receive and respond to user messages."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Configure Facebook Messenger trigger in DronaHQ Agents",
+      "description": "Step-by-step guide to connect Facebook Messenger as a conversation channel for a DronaHQ AI agent",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Add the Facebook Messenger trigger",
+          "text": "Go to the agent trigger settings in DronaHQ and select Facebook Messenger as the trigger type."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Copy the webhook URL",
+          "text": "Generate the webhook endpoint from DronaHQ and copy it from the configuration panel."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Configure Meta app settings",
+          "text": "Paste the webhook URL into the relevant Messenger webhook configuration inside Meta for Developers."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Map conversation context",
+          "text": "Configure how incoming Messenger message data should be passed into the agent context."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Save and test",
+          "text": "Save the trigger configuration and send a test message through Facebook Messenger to verify the setup."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/triggers/inbuilt-triggers/instagram",
+    "title": "AI agents for Instagram DMs: run conversations over Instagram",
+    "description": "Learn how to use Instagram as a trigger in DronaHQ so your AI agent can engage through Instagram Direct Messages as a channel, not just through your app's chat interface.",
+    "keywords": "Instagram trigger, Instagram DM bot, DronaHQ Instagram trigger, Meta webhook, omnichannel agent",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does the Instagram trigger do in DronaHQ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It lets your AI agent respond through Instagram Direct Messages so users can interact with the same agent through Instagram as a conversation channel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Instagram different from the embedded agent chat interface?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Instagram acts as an external messaging surface, while the embedded chat interface is the in-app experience configured inside DronaHQ."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Configure Instagram trigger in DronaHQ Agents",
+      "description": "Step-by-step guide to connect Instagram Direct Messages as a conversation channel for a DronaHQ AI agent",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Add the Instagram trigger",
+          "text": "Open the agent trigger settings in DronaHQ and select Instagram."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Copy the webhook URL",
+          "text": "Generate the DronaHQ webhook URL and copy it from the trigger configuration panel."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Configure Instagram webhook settings",
+          "text": "Paste the webhook URL into the Instagram webhook configuration inside Meta for Developers."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Map payload data",
+          "text": "Configure how Instagram message payload data should be passed into the agent's input and context."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Save and verify",
+          "text": "Save the setup and send a test Instagram message to confirm the trigger works correctly."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/triggers/inbuilt-triggers/scheduler",
+    "title": "Scheduled AI agents: run workflows automatically on time or interval",
+    "description": "Learn how to use the Scheduler trigger in DronaHQ to run AI agents automatically at fixed times or intervals for recurring tasks, background jobs, and proactive workflows.",
+    "keywords": "scheduler trigger, scheduled AI agent, DronaHQ scheduler, recurring automation, time-based trigger",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "When should I use the Scheduler trigger in DronaHQ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the Scheduler trigger when you want the agent to run automatically at a fixed time or interval without waiting for a user or system event."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are common uses for the Scheduler trigger?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common uses include recurring reports, monitoring, reminders, proactive checks, and other background workflows."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Configure Scheduler trigger in DronaHQ Agents",
+      "description": "Step-by-step guide to run a DronaHQ AI agent on a schedule",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Add the Scheduler trigger",
+          "text": "Go to the agent trigger settings in DronaHQ and select Scheduler."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Set the schedule",
+          "text": "Configure the time or interval at which the agent should run automatically."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Review the trigger context",
+          "text": "Confirm any input or contextual data the scheduled agent run should use."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Save the trigger",
+          "text": "Save the scheduler configuration so the agent starts at the defined time or interval."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Monitor executions",
+          "text": "Check tracing or logs to verify that the scheduled runs are executing correctly."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/triggers/inbuilt-triggers/webhook",
+    "title": "Webhook-triggered AI agents: start workflows from external systems",
+    "description": "Learn how to use the Webhook trigger in DronaHQ so external systems can start your AI agent with real-time events, payload data, and event-driven workflow inputs.",
+    "keywords": "webhook trigger, DronaHQ webhook, event-driven agent, external trigger, webhook payload",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does the Webhook trigger do in DronaHQ Agents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Webhook trigger starts an AI agent when an external system sends an event to the agent's webhook URL using methods such as GET or POST."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can webhook data be used inside the agent?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Webhook body, query parameters, and headers can be passed into the agent context and used in instructions, tools, or downstream logic."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Configure Webhook trigger in DronaHQ Agents",
+      "description": "Step-by-step guide to start a DronaHQ AI agent from an external webhook event",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Add the Webhook trigger",
+          "text": "Open the agent trigger settings in DronaHQ and select Webhook as the trigger type."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Copy the endpoint URL",
+          "text": "Generate and copy the unique webhook URL provided by DronaHQ for the trigger."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Send sample payload data",
+          "text": "Test the endpoint with sample GET or POST payload data so you can inspect the input structure."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Map webhook inputs",
+          "text": "Configure how webhook body, query string, and header values should be used by the agent."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Save and test end-to-end",
+          "text": "Save the trigger and call the webhook from an external system to verify that the agent executes correctly."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/triggers/inbuilt-triggers/whatsapp",
+    "title": "AI agents for WhatsApp: run conversations over WhatsApp Business",
+    "description": "Learn how to use WhatsApp as a trigger in DronaHQ so your AI agent can converse over WhatsApp as a business channel instead of being limited to an in-app chat interface.",
+    "keywords": "WhatsApp trigger, WhatsApp bot, DronaHQ WhatsApp trigger, WhatsApp Business API, omnichannel agent",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does the WhatsApp trigger do in DronaHQ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It lets your AI agent operate through WhatsApp conversations so users can engage with the same agent over a business messaging channel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is WhatsApp different from the embedded agent chat interface?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. WhatsApp is an external channel for conversations, while the embedded agent chat interface is the in-app experience inside your DronaHQ app."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Configure WhatsApp trigger in DronaHQ Agents",
+      "description": "Step-by-step guide to connect WhatsApp as a conversation channel for a DronaHQ AI agent",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Add the WhatsApp trigger",
+          "text": "Open the agent trigger settings in DronaHQ and select WhatsApp."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Copy the webhook URL",
+          "text": "Generate the webhook endpoint in DronaHQ and copy it from the trigger setup panel."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Configure WhatsApp webhook settings",
+          "text": "Paste the webhook URL into the WhatsApp configuration in Meta for Developers."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Map inbound message context",
+          "text": "Configure how incoming WhatsApp payload data should be passed to the agent instructions and tools."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Save and test",
+          "text": "Save the trigger and send a test WhatsApp message to verify the setup works correctly."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  },
+  {
+    "slug": "/agents/triggers/introduction",
+    "title": "Agent triggers in DronaHQ: run the same AI agent across chat, channels, and events",
+    "description": "Learn how triggers work in DronaHQ Agents so the same agent can start from chat, webhook, scheduler, WhatsApp, Instagram, Facebook Messenger, or business events across connected platforms.",
+    "keywords": "agent triggers, DronaHQ triggers, webhook trigger, scheduler trigger, omnichannel AI agent",
+    "author": "",
+    "image": "",
+    "canonical": "",
+    "faq_schema": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What are agent triggers in DronaHQ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Agent triggers define when and how the same AI agent starts running, whether from chat, messaging channels, webhooks, schedules, or external business events."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can one DronaHQ agent have multiple triggers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. A single agent can have multiple triggers so it can run across embedded chat, channels like WhatsApp or Instagram, and event-driven workflows."
+          }
+        }
+      ]
+    },
+    "howto_schema": {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Add triggers to a DronaHQ AI agent",
+      "description": "Step-by-step guide to choose and configure triggers for a DronaHQ AI agent",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "Open the agent",
+          "text": "Go to your agent in DronaHQ and open the trigger configuration area."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Choose a trigger type",
+          "text": "Select the trigger that matches your use case, such as chat, webhook, scheduler, WhatsApp, Instagram, Facebook Messenger, or DronaHQ Triggers."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Configure trigger settings",
+          "text": "Set the trigger inputs, authentication, timing, or channel-specific options based on the trigger type."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Save and test",
+          "text": "Save the trigger configuration and verify that the agent starts correctly when the trigger fires."
+        }
+      ]
+    },
+    "article_schema": null,
+    "product_schema": null,
+    "search_schema": null,
+    "dataset_schema": null
+  }
+]
