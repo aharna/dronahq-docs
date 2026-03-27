@@ -202,7 +202,7 @@ const config = {
       announcementBar: {
         id: 'anouncement',
         // content: '<span class="badge badge--success announcement-badge margin-right--sm">Live Workshop</span> Build your first AI agent <a target="_blank" rel="noopener noreferrer" href="https://luma.com/8gpejuv7?utm_source=docs-top-banner">Register Now</a>',
-        content: '<span class="badge badge--success announcement-badge margin-right--sm">Now Live</span> Try our Agentic Platform <a target="_blank" rel="noopener noreferrer" href="https://www.dronahq.com/agents/signup/?utm_source=docs-top-banner">Signup</a>',
+        content: '<span class="badge badge--success announcement-badge margin-right--sm">Hands-on Workshop</span> Build your AI teammate <a target="_blank" rel="noopener noreferrer" href="https://www.dronahq.com/ai-workshop?utm_source=website-top-banner">Save your spot</a>',
         backgroundColor: '#fafbfc',
         textColor: '#091E42',
         isCloseable: true,
