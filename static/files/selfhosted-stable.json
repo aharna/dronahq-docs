@@ -4,7 +4,7 @@
     "tags": ["Self-Hosted", "3.9.8-stable"],
     "heading": "Version 3.9.8-stable",
     "cards" : [
-      
+    
       { "title": "Fixed",
         "type": "fixed",
         "points": [
@@ -46,7 +46,6 @@
 "Fixed an issue where switching a Data Query while editing without saving would clear the query.",
 "Fixed an issue where the fillable PDF JSON column did not provide sufficient space for editing JSON content.",
 "Fixed an issue where proxy requests were intermittently failing.",
-
 "Fixed an issue where the header screen was not visible within the Validate Screen action.",
 "Fixed an issue with the Set and Remove property functionality in the textarea component.",
 "Fixed an issue where saving triggered repeated Widget Update API calls.",
