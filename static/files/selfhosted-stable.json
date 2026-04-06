@@ -1,16 +1,20 @@
 [
    {
     "timestamp": 1774023489000,
-    "tags": ["Self-Hosted", "3.9.7-stable"],
-    "heading": "Version 3.9.7-stable",
+    "tags": ["Self-Hosted", "3.9.8-stable"],
+    "heading": "Version 3.9.8-stable",
     "cards" : [
-      
+    
       { "title": "Fixed",
         "type": "fixed",
         "points": [
           "Fixed an issue where Git operations caused high RAM and CPU consumption.",
 
-"Fixed version comparison logic during publish to ensure accurate version handling."
+"Fixed version comparison logic during publish to ensure accurate version handling.",
+"Fixed an issue where unnecessary scrolling occurred in the publish sidebar body.",
+"Fixed an issue where proxy requests were intermittently failing.",
+"Fixed an issue where the 'Update Widget' notification persisted for imported widgets with custom controls.",
+"Fixed an issue where JavaScript references were converted to variable values after using Save & Test."
         ]
       }
     ]
@@ -41,11 +45,11 @@
 "Fixed an issue where the Data Query end URL was incorrectly set to the base URL, omitting the defined path.",
 "Fixed an issue where switching a Data Query while editing without saving would clear the query.",
 "Fixed an issue where the fillable PDF JSON column did not provide sufficient space for editing JSON content.",
-
+"Fixed an issue where proxy requests were intermittently failing.",
 "Fixed an issue where the header screen was not visible within the Validate Screen action.",
 "Fixed an issue with the Set and Remove property functionality in the textarea component.",
 "Fixed an issue where saving triggered repeated Widget Update API calls.",
-"Fixed an issue where the hiddenColumnList was not updated when control data changed during save.",
+"Fixed an issue where the hidden Column List was not updated when control data changed during save.",
 "Fixed an issue where widgets were updated incorrectly on app import due to an invalid DQ configuration.",
 "Fixed an issue where PDF Creator and DHQ File Storage components were duplicated without proper configuration."
         ]
