@@ -1,4 +1,27 @@
 [
+     {
+    "timestamp": 1775561771000,
+    "tags": [
+      "Self-Hosted",
+      "3.10.1-edge"
+    ],
+    "heading": "Version 3.10.1-edge",
+    "cards": [
+      {
+        "title": "Added",
+        "type": "added",
+        "points": ["Added support for dynamic properties, enabling the use of formulas within property values."]
+      },{
+        "title":"Fixed",
+        "type":"fixed",
+        "points":["Fixed an issue where duplicate import URLs appeared when adding widgets with existing libraries.",
+"Fixed an issue where default selections did not work in nested controls.",
+"Fixed an issue where the query appeared blank when opening DQ in certain cases.",
+"Fixed an issue where the app failed to open when the default view was set to mobile."]
+      }
+
+    ]
+  },
    {
     "timestamp": 1773764289000,
     "tags": [
