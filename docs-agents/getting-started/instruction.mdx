@@ -8,166 +8,359 @@ import VersionedLink from '@site/src/components/VersionedLink';
 import Thumbnail from '@site/src/components/Thumbnail';
 
 
+# Overview: how to write agent instructions, best practices
 
-# Best Practices: Agent Instructions
+AI agent instructions define how an AI agent behaves, what it can do, which tools it can use, and the boundaries it must operate within.
 
-## Overview
+A well-structured instruction set improves:
 
-Agent Instructions are the foundational configuration layer in DronaHQ's agentic platform that defines how your AI agent behaves, responds, and interacts with users. Think of it as the "DNA" of your agent, it establishes personality, capabilities, knowledge boundaries, and operational guardrails.
+* Response consistency
+* Task completion accuracy
+* Safety and compliance
+* Tool usage reliability
 
-## What are Agent Instructions?
 
-Agent Instructions are structured prompts that shape your agent's behavior by defining:
+## What are AI agent instructions
 
-- **Identity and Role:** Who the agent is and what it represents  
-- **Behavioral Guidelines:** How the agent should communicate and respond  
-- **Knowledge Boundaries:** What the agent knows and can access  
-- **Tool Integration:** Which tools and APIs the agent can leverage  
-- **Safety Guardrails:** Ethical and operational constraints₹11  
+AI agent instructions are the persistent system configuration that governs an agent’s behavior across all interactions.
 
-## Why Agent Instructions Matter
+They are not task-specific. Instead, they define the operating logic the agent follows every time it receives a prompt.
 
-Well-crafted instructions ensure your agent delivers consistent, contextually appropriate, and valuable interactions. Poor instructions lead to unpredictable behavior, off-brand responses, and potential compliance issues.
+A complete instruction set includes:
 
-## The Five Principles of Effective Agent Instructions
+* Role and identity: what the agent is responsible for
+* Behavioral rules: how it communicates and responds
+* Knowledge boundaries: what it knows and what it should not assume
+* Tool access and usage: what actions it can take
+* Guardrails: what it must never do
+* Edge case handling: how it behaves under uncertainty or failure
 
-### Principle 1: Define a Clear Role and Purpose
+Without clear instructions, agents tend to:
 
-**What it means:** Establish exactly who your agent is, what it does, and why it exists.  
-**Why it matters:** Clarity of purpose prevents scope creep and keeps the agent focused on its intended function.
+* Provide inconsistent answers
+* Use tools incorrectly
+* Go out of scope
+* Hallucinate missing information
 
-**Implementation**
 
-**Best Practices:**
-- Use specific job titles or functional roles rather than vague descriptors  
-- Define what the agent does AND what it doesn't do  
-- Include the target audience (who uses this agent)  
-- State measurable outcomes when possible  
 
-### Principle 2: Define Behavior and Tone of Voice
+## Agent instructions vs prompts
 
-**What it means:** Specify how the agent communicates, including language style, formality level, and personality traits.  
-**Why it matters:** Consistent tone builds trust and ensures brand alignment across all interactions.
+Agent instructions and prompts serve different purposes and operate at different levels.
 
-**Implementation**
+| Aspect   | Agent Instructions                   | Prompts                           |
+| -------- | ------------------------------------ | --------------------------------- |
+| Purpose  | Define behaviour and rules           | Ask a specific question or task   |
+| Scope    | Persistent across sessions           | Single interaction                |
+| Author   | System/product team                  | End-user or workflow              |
+| Function | Controls how responses are generated | Defines what needs to be answered |
 
-**Best Practices:**
-- Provide concrete examples of preferred phrasing  
-- Specify response length expectations  
-- Define how to handle uncertainty ("I don't have that information" vs. searching)  
-- Match tone to your user base (technical vs. general audience)  
+**Example:**
 
-### Principle 3: Set Clear Behavioral Rules and Guardrails
+* Instruction: “Confirm user region before quoting pricing.”
+* Prompt: “What does your enterprise plan cost?”
 
-**What it means:** Establish explicit boundaries for what the agent can and cannot do, including ethical guidelines and safety constraints.  
-**Why it matters:** Guardrails prevent harmful outputs, ensure compliance, and protect both users and your organization.
+**Mental model:**
 
-**Implementation**
+Instructions = operating system
+Prompts = input requests
 
-**Best Practices:**
-- Use imperative language (MUST, NEVER, ALWAYS)  
-- Be specific about prohibited actions  
-- Provide fallback behaviors for common edge cases  
-- Include escalation paths for complex scenarios  
-- Document compliance requirements explicitly  
 
-### Principle 4: Build Agent Memory, Knowledge, and Context
 
-**What it means:** Define what information the agent has access to, how it should use contextual data, and what it should remember across interactions.  
-**Why it matters:** Contextual awareness enables personalized, relevant responses and prevents repetitive conversations.
+## How to think about agent instructions (mental model)
 
-**Implementation**
+A production-grade instruction set operates across three layers:
 
-**Best Practices:**
-- Specify data sources explicitly  
-- Define data freshness requirements  
-- Establish memory scope (session vs. persistent)  
-- Include privacy considerations  
-- Document what data is logged and for how long  
+| Layer           | What it does                                | Defines                                                         |
+| --------------- | ------------------------------------------- | --------------------------------------------------------------- |
+| Identity layer  | defines what the agent is responsible for   | Role, audience, scope                                           |
+| Decision layer  | defines how the agent evaluates and decides | Rules and guardrails, escalation logic, low-confidence behavior |
+| Execution layer | defines how the agent takes action          | Tool usage, workflows, output formats                           |
 
-### Principle 5: Make it Actionable and Tool-Aware
+Most agent failures occur when these layers are:
 
-**What it means:** Clearly define which tools, integrations, and actions the agent can perform, and when to use them.  
-**Why it matters:** Tool integration is what transforms a conversational agent into an operational assistant that can actually complete tasks.
+* Missing
+* Overlapping
+* Poorly defined
 
-**Implementation**
 
-**Best Practices:**
-- Document each tool's purpose and triggers  
-- Specify required parameters  
-- Define error handling for tool failures  
-- Establish confirmation requirements for destructive actions  
-- Provide examples of tool usage  
 
-### Principle 6: Handle Edge Cases
+## Example: Mapping a real agent to these layers
 
-**What it means:** Anticipate unusual scenarios, ambiguous requests, and error conditions, then define appropriate responses.  
-**Why it matters:** Edge case handling prevents frustrating user experiences and reduces need for human intervention.
+Consider a Sales Quote Feasibility Agent that validates whether a salesperson’s quote can be approved.
 
-**Implementation**
+**Identity:**
+The agent validates quotes, checks inventory, and determines approval vs rejection.
+→ This keeps it scoped strictly to quote feasibility.
 
-#### Edge Cases Quick Reference
+**Decision:**
+Rules like:
 
-| Situation        | Response Pattern                 | Example                                                                 |
-|------------------|----------------------------------|-------------------------------------------------------------------------|
-| Ambiguous        | Offer 2-3 specific options       | "Do you mean: (a) standard pricing, (b) custom quote, or (c) comparison?" |
-| Out of Scope     | Redirect with alternative        | "I handle pre-sales. For billing, I'll connect you with accounts."      |
-| Missing Data     | Explain what's needed            | "To quote accurately, I need: company size, region, user count."       |
-| System Error     | Acknowledge + workaround         | "CRM is down. I can answer general questions or email sales@co.com."    |
-| Frustrated User  | Empathize + escalate             | "I understand. Let me connect you with a senior specialist now."        |
-| Unauthorized     | Explain + alternative            | "Can't modify pricing. I can request manager approval (1-2 hrs)."      |
-| Repetitive       | Suggest alternative help         | "We've covered this. Would a guide or expert call help more?"           |
-| Too Technical    | Acknowledge limits               | "This needs engineering expertise. I'll connect you with them."        |
-| Hostile          | Set boundary                     | "I need respectful conversation to help. Can we reset?"                |
-| Urgent           | Acknowledge + set timeline       | "I can [action] now (2 min), then [follow-up] in [time]."               |
+* Reject if quantity exceeds stock
+* Require approval if margin < 20%
+* Auto-approve otherwise
 
-**Best Practices:**
-- Identify top 10 edge cases from user feedback  
-- Provide specific response templates  
-- Build graceful degradation paths  
-- Include escalation triggers  
-- Test edge cases regularly  
+→ This ensures decisions are consistent and auditable.
 
----
+**Execution:**
+The agent fetches data from databases, calculates margin, stores records, and generates a PDF only if approved.
+→ This controls how actions are performed.
 
-## Complete Agent Instruction Template
+
+
+## Anatomy of a strong instruction set
+
+A well-structured instruction set contains six components:
+
+| Component             | Purpose                             |
+| --------------------- | ----------------------------------- |
+| Role and purpose      | Defines scope and audience          |
+| Tone and style        | Ensures consistency                 |
+| Rules and guardrails  | Prevents unsafe or invalid behavior |
+| Knowledge and context | Controls information boundaries     |
+| Tools                 | Enables actions                     |
+| Edge case handling    | Handles uncertainty and failure     |
+
+
+
+## What belongs in instructions
+
+* Role definition and scope
+* Audience specification
+* Communication style
+* Hard rules (MUST / NEVER)
+* Tool usage conditions
+* Escalation logic
+* Output format rules
+
+## What should NOT be included
+
+* User-specific data
+* One-off task logic
+* Backend business logic
+* Conflicting or redundant rules
+
+
+
+## Six principles of effective agent instructions (with examples)
+
+### 1. Define a clear role and scope
+
+**Weak:**
+You are a helpful assistant.
+
+**Strong:**
+You are a pre-sales support specialist for an enterprise SaaS platform.
+You help prospects evaluate product fit and guide them toward a demo.
+
+Handle: product questions, use case mapping, pricing (non-custom)
+Do not handle: billing issues, contract negotiation, implementation support
+
+
+### 2. Define behavior and response patterns
+
+**Weak:**
+Be professional and friendly.
+
+**Strong:**
+
+* Tone: direct, clear, and confident
+* Short answers: 1–3 sentences
+* Comparisons: use tables
+* Walkthroughs: numbered steps
+* Avoid filler phrases and repetition
+
+
+
+### 3. Set explicit rules and guardrails
+
+**Weak:**
+Avoid risky responses.
+
+**Strong:**
+
+* MUST confirm region before pricing
+* NEVER make contractual commitments
+* NEVER disclose internal roadmap
+* Escalate legal or enterprise-specific queries
+
+
+### 4. Define knowledge boundaries
+
+**Weak:**
+Use knowledge base.
+
+**Strong:**
+
+* Primary source: product documentation
+* If not found: explicitly say so
+* Do not infer undocumented capabilities
+
+
+### 5. Make tool usage explicit
+
+**Weak:**
+You can use CRM and calendar tools.
+
+**Strong:**
+**Demo Scheduler**
+
+* Use when: user requests demo
+* Requires: date, timezone
+* Confirm before booking
+* On failure: offer manual follow-up
+
+
+### 6. Handle edge cases
+
+**Weak:**
+Handle errors gracefully.
+
+**Strong:**
+
+* Ambiguous request → offer options
+* Missing data → ask for specific inputs
+* Tool failure → explain + provide alternative
+* Frustration → escalate immediately
+
+
+## Common mistakes in AI agent instructions
+
+* Vague roles
+* Conflicting rules
+* Unstructured instruction blocks
+* Referencing unavailable tools
+* Missing escalation logic
+* No output format definition
+* No low-confidence behavior
+* Mixing role, policy, and workflow
+
+
+## Troubleshooting poor agent behavior
+
+| Symptom            | Likely issue          | Fix                      |
+| ------------------ | --------------------- | ------------------------ |
+| Hallucination      | No knowledge boundary | Add “do not infer” rule  |
+| Wrong tool usage   | Missing triggers      | Define when to use tools |
+| Inconsistent tone  | Weak tone rules       | Add format constraints   |
+| No escalation      | Missing triggers      | Define clear conditions  |
+| Repeated questions | No memory rules       | Define session memory    |
+
+
+
+## AI agent instruction checklist
+
+Before deploying an agent:
+
+* Role and scope clearly defined
+* Out-of-scope conditions specified
+* Tool triggers and restrictions defined
+* Low-confidence behavior included
+* Escalation rules defined
+* Output format rules present
+* No conflicting instructions
+
+
+
+## The complete AI agent instruction template
 
 Below is a comprehensive template that incorporates all six principles. Copy and customize this for your DronaHQ agentic platform:
 
-```markdown
-# 1. ROLE & PURPOSE
-Role: [Specific function, e.g., "Customer Support Specialist"]
-Purpose: [One sentence objective]
-Scope: Handle [X, Y]. Don't handle [A, B].
+```
+# AGENT INSTRUCTIONS , [Agent Name]
 
-# 2. TONE & STYLE
-Tone: [Professional/Casual, Technical/Simple]
-- Response length: [Concise/Detailed]
-- Format: [Bullets/Prose when...]
-- Personality: [2-3 key traits]
+## 1. ROLE & PURPOSE
+Role:
+Objective:
+Success criteria:
+Audience:
 
-# 3. RULES & GUARDRAILS
-MUST: [3-5 critical requirements]
-NEVER: [3-5 prohibited actions]
-Uncertain: [How to handle low confidence]
-Escalate when: [Trigger conditions]
+Scope:
+Out of scope:
 
-# 4. KNOWLEDGE & CONTEXT
-Sources: [Data sources + update frequency]
-Remember: [What to track in session]
-Access: [Available user data]
-Privacy: [What never to log]
+## 2. TONE & STYLE
+Tone:
+Response structure:
+Avoid:
+Output format rules:
 
-# 5. TOOLS
-[Tool Name]: Use when [trigger] | Needs [params]
-[Tool Name]: Use when [trigger] | Needs [params]
-[Tool Name]: Use when [trigger] | Needs [params]
+## 3. RULES & GUARDRAILS
+MUST:
+NEVER:
+Low-confidence behavior:
+Escalation triggers:
+Escalation action:
 
-Always: Explain tool usage | Confirm before modifying data
+## 4. KNOWLEDGE & CONTEXT
+Primary source:
+Fallback:
+If unknown:
+Session memory:
+Privacy rules:
 
-# 6. EDGE CASES
-- Ambiguous → Clarify with options
-- Out of scope → Redirect + alternative
-- Missing data → Request specifics
-- Error → Acknowledge + workaround
-- Frustrated → Empathize + escalate
+## 5. TOOLS
+Tool name:
+Use when:
+Requires:
+On failure:
+Restrictions:
+
+Confirmation rules:
+
+## 6. EDGE CASE HANDLING
+Ambiguity:
+Missing data:
+Errors:
+Frustration:
+
+## 7. EXAMPLES
+Example responses:
+```
+
+
+
+## Writing instructions for different types of agents
+
+**Agents with tools**
+
+* Define trigger conditions
+* Specify required inputs
+* Include failure handling
+
+**Agents with knowledge bases**
+
+* Define source explicitly
+* Add “do not infer” rule
+
+**Agents that modify data**
+
+* Require confirmation
+* Prevent automatic execution
+
+**Agents with human handoff**
+
+* Define triggers
+* Pass context
+* Set expectations
+
+---
+
+## FAQ
+
+**What should AI agent instructions include?**
+Role, rules, tools, knowledge, edge cases, and output format.
+
+**How are instructions different from prompts?**
+Instructions define behavior; prompts define tasks.
+
+**How long should instructions be?**
+Typically 400–800 words, structured clearly.
+
+**Should instructions include tool rules?**
+Yes , always define when and how tools are used.
+
+**How do you handle uncertainty?**
+Add explicit low-confidence behavior and escalation paths.
+
+---
+
