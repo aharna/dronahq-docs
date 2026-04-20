@@ -8,13 +8,14 @@
       { "title": "Fixed",
         "type": "fixed",
         "points": [
-          "Fixed an issue where Git operations caused high RAM and CPU consumption.",
-
+       "Fixed an issue where Git operations caused high RAM and CPU usage.",
 "Fixed version comparison logic during publish to ensure accurate version handling.",
 "Fixed an issue where unnecessary scrolling occurred in the publish sidebar body.",
-"Fixed an issue where proxy requests were intermittently failing.",
-"Fixed an issue where the 'Update Widget' notification persisted for imported widgets with custom controls.",
-"Fixed an issue where JavaScript references were converted to variable values after using Save & Test."
+"Fixed an issue where proxy requests were failing intermittently.",
+"Fixed an issue where the “Update Widget” notification persisted for imported widgets with custom controls.",
+"Fixed an issue where JavaScript references were not properly converted after Save & Test."
+
+
         ]
       }
     ]
