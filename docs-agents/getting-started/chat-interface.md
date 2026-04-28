@@ -29,6 +29,8 @@ The following properties are available for configuring the visual elements and d
 | Initial message | Text (Rich Text Supported) | The first message the user sees when opening a new chat session. Use this to greet the user and define the Agent's capabilities. | Hello! How may I assist you today? |
 | Suggested messages | List of Text Inputs | A list of predefined prompts that send to the Agent when clicked, with optional repeat display. | Also, default value column can be inputted. |
 | Message placeholder | Text | The greyed-out text shown in the user input field before they start typing. | Ask me a question... |
+| Enable rich UI Responses | |This enables to render agent responses as rich interactive UI components (charts, tables, forms, etc.). This will consume ~50% more credits per response.| |
+| Enable Speech to Text | |Enable to show a microphone button in the chat composer. Audio is transcribed and inserted at the current cursor position.| |
 | Collect user feedback |  | Collect user feedback by displaying a thumbs up or down button on agent messages. |  |
 | Regenerate messages |  | Display a regenerate response button on agent messages. |  |
 | Allow file upload | Upload | Show file upload button on agent messages. |  |
