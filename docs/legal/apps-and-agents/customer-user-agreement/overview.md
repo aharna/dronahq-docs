@@ -10,71 +10,61 @@ import VersionedLink from '@site/src/components/VersionedLink';
 import ArrowRight from '@site/static/icons/arrow_right.svg';
 
 
-<h2> Apps and Agents </h2>
+
 <div className="gallery">
   <div className="card">
     <div className="card-header">
-      <h4>Customer User Agreement</h4>
+      <h4>Acceptable Use Policy</h4>
     </div>
-    <VersionedLink to="/legal/customer-user-agreement/overview/">
+    <VersionedLink to="/legal/apps-and-agents/customer-user-agreement/acceptable-use-policy/">
       View <ArrowRight className="arrow" />
     </VersionedLink>
   </div>
 
   <div className="card">
     <div className="card-header">
-      <h4>DronaHQ Managed LLM Policy</h4>
+      <h4>Customer Service Agreement</h4>
     </div>
-    <VersionedLink to="/legal/dronahq-managed-llm-policy/overview">
+    <VersionedLink to="/legal/apps-and-agents/customer-user-agreement/customer-terms">
+      View <ArrowRight className="arrow" />
+    </VersionedLink>
+  </div>
+
+<div className="card">
+    <div className="card-header">
+      <h4>Customer Specific Supplement</h4>
+    </div>
+    <VersionedLink to="/legal/apps-and-agents/customer-user-agreement/customer-specific-supplement/">
       View <ArrowRight className="arrow" />
     </VersionedLink>
   </div>
 
   <div className="card">
     <div className="card-header">
-      <h4>Intellectual Property</h4>
+      <h4>Customer Terms</h4>
     </div>
-    <VersionedLink to="/legal/intellectual-property/dmca-policy">
+    <VersionedLink to="/legal/apps-and-agents/customer-user-agreement/customer-terms/">
       View <ArrowRight className="arrow" />
     </VersionedLink>
   </div>
 
   <div className="card">
     <div className="card-header">
-      <h4>LLM DPAs</h4>
+      <h4>Master Subscription Agreement</h4>
     </div>
-    <VersionedLink to="/legal/llm-dpas/overview">
-      View <ArrowRight className="arrow" />
-    </VersionedLink>
-  </div>
-
-  <div className="card">
-    <div className="card-header">
-      <h4>Privacy Data Protection & Security</h4>
-    </div>
-    <VersionedLink to="/legal/privacy-data-protection-and-security/overview">
-      View <ArrowRight className="arrow" />
-    </VersionedLink>
-  </div>
-
-  
-
-  <div className="card">
-    <div className="card-header">
-      <h4>Product Specific Terms</h4>
-    </div>
-    <VersionedLink to="/legal/product-specific-terms/ai-terms">
-      View <ArrowRight className="arrow" />
-    </VersionedLink>
-  </div>
-
-  <div className="card">
-    <div className="card-header">
-      <h4>DronaHQ Support Policy</h4>
-    </div>
-    <VersionedLink to="/legal/dronahq-support-policy/">
+    <VersionedLink to="/legal/apps-and-agents/customer-user-agreement/master-subscription-agreement/">
       View  <ArrowRight className="arrow" />
     </VersionedLink>
   </div>
+
+  <div className="card">
+    <div className="card-header">
+      <h4>User Terms of Service</h4>
+    </div>
+    <VersionedLink to="/legal/apps-and-agents/customer-user-agreement/user-terms-of-services/">
+      View <ArrowRight className="arrow" />
+    </VersionedLink>
+  </div>
+
 </div>
 
