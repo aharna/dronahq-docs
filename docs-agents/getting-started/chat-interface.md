@@ -1,5 +1,5 @@
 ---
-sidebar_position: 103
+sidebar_position: 9
 title: "Chat Interface"
 pagination_prev: null
 ---

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 103
+sidebar_position: 14
 title: "Credit Usage Guide"
 pagination_prev: null
 ---
