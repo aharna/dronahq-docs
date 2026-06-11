@@ -99,9 +99,9 @@ import TabItem from '@theme/TabItem';
 | claude-opus-4-1-20250805 | 15 | 75 |
 | claude-sonnet-4-5-20250929 | 6 | 22.5 |
 | claude-haiku-4-5-20251001 | 1 | 5 | 
-| claude-opus-4-7 | 2.5 | 12.5 |
-| claude-sonnet-4-6 | 1.5 | 7.5 |
-| claude-opus-4-6| 2.5 | 12.5 | 
+| claude-sonnet-4-6 | 3 | 15 |
+| claude-opus-4-6| 5 | 25 | 
+| claude-opus-4-7 | 5 | 25 |
 
 
 </TabItem>
