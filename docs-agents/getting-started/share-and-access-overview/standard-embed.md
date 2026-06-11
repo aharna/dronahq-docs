@@ -15,7 +15,7 @@ import Thumbnail from '@site/src/components/Thumbnail';
 
 <figure>
   <Thumbnail src="/img/agent-share-access/public-access.png" alt="Diagram of Secure Embed Sharing" width='100%'/>
-  <figcaption align = "center"><i>Standard Enbed</i>
+  <figcaption align = "center"><i>Standard Embed</i>
   </figcaption>
 </figure>
 
