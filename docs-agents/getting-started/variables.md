@@ -9,13 +9,11 @@ import VersionedLink from '@site/src/components/VersionedLink';
 import ArrowRight from '@site/static/icons/arrow_right.svg';
 import Thumbnail from '@site/src/components/Thumbnail';
 
-## What Are Variables?
+# What Are Variables?
 
 Variables act as the dynamic memory for your agents, storing and retrieving data to provide crucial context, personalization, and continuity throughout a session. Variables allow agents to retain state and adapt to user interactions.
 
-To retrieve or reference a variable within your components, queries, or UI elements, use the standard double-curly brace notation:
-
-`{{variable.<name>}}`
+To retrieve or reference a variable within your components, queries, or UI elements, use the standard double-curly brace notation: `{{variable.<name>}}`
 
 ### Key Features
 
@@ -23,13 +21,18 @@ To retrieve or reference a variable within your components, queries, or UI eleme
 * **Data Security:** Value masking in logs to protect sensitive information.
 * **Global Accessibility:** Simple syntax to reference stored data anywhere in the agent execution path.
 
-> **Note**
->
-> Any value referenced using the `{{variable.*}}` syntax is automatically scrubbed from execution traces and system logs to ensure data privacy and security compliance.
+:::info
+Any value referenced using the `{{variable.*}}` syntax is automatically scrubbed from execution traces and system logs to ensure data privacy and security compliance.
+:::
 
 ## Adding Variables
 
 You can define and manage your variables through the platform interface using the configuration table.
+
+<figure align ="center">
+  <Thumbnail src="/img/agent-variable/variable.png" alt="Adding variable to the agent" width="400px" />
+  <figcaption align ="center"><i>Adding variable </i></figcaption>
+</figure>
 
 | Property       | Description                                                                     | Requirement |
 | -------------- | ------------------------------------------------------------------------------- | ----------- |

@@ -147,7 +147,7 @@ Filter by **Error** to locate hard crashes such as context window overflow or ra
 
 When a low score appears, adjust your agent's system prompt or temperature settings, run a new Eval, and compare the two runs side-by-side on your dashboard to verify improvement.
 
-## Frequently Asked Questions
+## Frequently Asked Questions(FAQs)
 
 <details>
 <summary><strong>What is the purpose of Evals?</strong></summary>
