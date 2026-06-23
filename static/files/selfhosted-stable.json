@@ -1,4 +1,18 @@
 [
+   { "timestamp": 1781849762000,
+    "tags": ["Self-Hosted", "3.9.12-stable"],
+    "heading": "Version 3.9.12-stable",
+    "cards" : [
+    
+      { "title": "Fixed",
+        "type": "fixed",
+        "points": [
+          "Fixed an issue affecting dropdown options across various Studio Actions.",
+"Fixed a security vulnerability where folder IDs could be deleted without validating the associated channel."
+        ]
+    }
+  ]
+},
   { "timestamp": 1778750068000,
     "tags": ["Self-Hosted", "3.9.11-stable"],
     "heading": "Version 3.9.11-stable",
@@ -7,7 +21,8 @@
       { "title": "Fixed",
         "type": "fixed",
         "points": [
-          "Fixed an issue where SCIM user creation could fail when the emails array was undefined."
+          "Fixed an issue where SCIM user creation could fail when the emails array was undefined.",
+          "Fixed an issue where the screen size would increase but not decrease correctly when resizing the window."
         ]
     }
   ]
