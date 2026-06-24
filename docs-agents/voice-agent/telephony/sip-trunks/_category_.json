@@ -1,0 +1,8 @@
+{
+    "label": "SIP Trunks",
+    "position": 3,
+    "link": {
+        "type": "generated-index",
+        "description": "Bring your own SIP trunk and connect outbound calling."
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "label": "Phone number",
+    "position": 2,
+    "link": {
+        "type": "generated-index",
+        "description": "Import a phone number directly from a telephony carrier."
+    }
+}
