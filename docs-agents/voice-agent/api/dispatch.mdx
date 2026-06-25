@@ -1,0 +1,195 @@
+---
+sidebar_position: 1
+title: "Outbound Call Dispatch"
+---
+
+# Outbound Call Dispatch
+
+The Outbound Call Dispatch API queues one or more outbound calls for a published voice agent. Dispatch is **asynchronous**: the API returns `202 Accepted` immediately with a batch identifier, and you poll a status endpoint to track each call as it dials, completes, or fails.
+
+## When to Use This
+
+- Place outbound calls programmatically from your backend, CRM, or scheduler.
+- Dial a list of numbers in one request and track them as a single batch.
+- Retry safely with an idempotency key so duplicate requests don't dispatch twice.
+
+## Prerequisites
+
+- A **published** voice agent with an active outbound **FROM number** configured under **Call Configuration → Outbound Settings**. Drafts and unpublished agents cannot be dispatched.
+- An [API Key](/agents/developer/api-keys) with the **Voice Agent** scope. If the key uses a specific **Agent Access** list, the target `agent_id` must be on that list.
+
+## Authentication
+
+Every request must include the **`api-key`** header — see [API Keys](/agents/developer/api-keys) for how to generate and manage tokens.
+
+```
+api-key: sk_<your-secret>
+```
+
+A missing, invalid, disabled, expired, scope-mismatched, or agent-denied key fails with `401`/`403` and is recorded in [Request Logs](/agents/developer/request-logs) with a matching error code.
+
+
+## Create a dispatch
+
+`POST /voice/outbound/dispatch`
+
+### Headers
+
+| Header | Required | Description |
+|---|---|---|
+| `api-key` | Yes | Your API key secret (must have **Voice Agent** scope) |
+| `Content-Type` | Yes | `application/json` |
+| `Idempotency-Key` | No | Free-form string. Repeating the same key returns the original `batch_id` instead of creating a new batch. See [Idempotency](#idempotency) below. |
+
+### Body
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `agent_id` | string | Yes | UUID of the **published** voice agent to dispatch from |
+| `destination_phonenumber` | string or array of strings | Yes | One or more destination numbers in **E.164 format** (e.g., `+14155551234`). Up to **500** numbers per request by default. |
+| `metadata` | object | No | Free-form key/value pairs attached to the batch — surfaced in observability events for your own correlation |
+
+### Example request
+
+```bash
+curl -X POST https://<your-dronahq-host>/voice/outbound/dispatch \
+  -H "api-key: sk_your-generated-secret-here" \
+  -H "Content-Type: application/json" \
+  -H "Idempotency-Key: campaign-2026-06-23-batch-7" \
+  -d '{
+    "agent_id": "<voice-agent-uuid>",
+    "destination_phonenumber": [
+      "+14155551234",
+      "+919876543210"
+    ],
+    "metadata": {
+      "campaign_id": "spring-renewal",
+      "tier": "premium"
+    }
+  }'
+```
+
+### Response — `202 Accepted`
+
+| Field | Type | Description |
+|---|---|---|
+| `batch_id` | string | UUID for this batch; use it with the status endpoint below |
+| `accepted` | integer | Count of numbers accepted into the batch |
+| `status_url` | string | Relative URL to poll for batch status |
+
+```json
+{
+  "batch_id": "f0c1a3f2-9e1c-4b21-9b8b-5a9c0f0a1e3a",
+  "accepted": 2,
+  "status_url": "/voice/outbound/dispatch/f0c1a3f2-9e1c-4b21-9b8b-5a9c0f0a1e3a"
+}
+```
+
+
+## Get batch status
+
+`GET /voice/outbound/dispatch/{batch_id}`
+
+Returns the current state of every call in the batch.
+
+### Headers
+
+| Header | Required | Description |
+|---|---|---|
+| `api-key` | Yes | Same key requirements as create — must have **Voice Agent** scope and access to the batch's `agent_id` |
+
+### Example response — `200 OK`
+
+```json
+{
+  "batch_id": "f0c1a3f2-9e1c-4b21-9b8b-5a9c0f0a1e3a",
+  "agent_id": "a1d3...",
+  "created_at": "2026-06-23T10:14:02Z",
+  "total": 2,
+  "queued": 0,
+  "dialing": 1,
+  "completed": 1,
+  "failed": 0,
+  "retrying": 0,
+  "calls": [
+    {
+      "index": 0,
+      "phone_number": "+14155551234",
+      "status": "completed",
+      "attempts": 1,
+      "error_code": null,
+      "error_message": null,
+      "started_at": "2026-06-23T10:14:05Z",
+      "completed_at": "2026-06-23T10:15:22Z"
+    },
+    {
+      "index": 1,
+      "phone_number": "+919876543210",
+      "status": "dialing",
+      "attempts": 1,
+      "error_code": null,
+      "error_message": null,
+      "started_at": "2026-06-23T10:14:05Z",
+      "completed_at": null
+    }
+  ]
+}
+```
+
+### Call status values
+
+| Status | Meaning |
+|---|---|
+| `queued` | Waiting in the dispatcher queue, not yet dialed |
+| `dialing` | Provider has been asked to place the call |
+| `completed` | Call connected and ended normally |
+| `failed` | Call failed permanently; `error_code` and `error_message` describe why |
+| `retrying` | Call failed with a retriable error and will be retried (subject to the retry budget) |
+
+
+## Idempotency
+
+Send `Idempotency-Key: <your-string>` on the create request to make retries safe. If you re-send the same `Idempotency-Key`, the API returns the original batch's `batch_id` and `accepted` count instead of dispatching a second time.
+
+Use any stable string your system can regenerate on retry — a campaign-batch ID, a job ID from your scheduler, or a UUID you store before the call.
+
+## Limits
+
+| Limit | Default | Notes |
+|---|---|---|
+| Numbers per request | **500** | Requests exceeding this fail with `400`. |
+| Concurrent calls per worker | **2** | Beyond this, calls stay in `queued` until a slot frees. |
+| Retry attempts per call | **3** | Only applies to retriable failures (see below). |
+
+Defaults are operator-configurable; check with your administrator if you need them tuned.
+
+
+## Errors
+
+### API errors (entire request fails)
+
+| HTTP status | Cause | Fix |
+|---|---|---|
+| `400` | Too many numbers in one request | Split into batches of ≤ 500 |
+| `400` | Agent is not published, or has no outbound FROM number | Publish the agent and pick an outbound number in **Call Configuration → Outbound Settings** |
+| `400` | A number isn't valid E.164 | Use `+<country><number>`, digits only |
+| `401` / `403` | Auth failure on the API key | See the error-code chip in [Request Logs](/agents/developer/request-logs) (`missing_token`, `invalid_token`, `disabled`, `expired`, `scope_denied`, `agent_denied`) |
+| `404` | `agent_id` not found, or `batch_id` not found on the status endpoint | Double-check the UUID; the batch may have aged out |
+
+### Per-call error codes
+
+When a single call inside a batch fails, the call's `error_code` is one of:
+
+| Code | Retriable? | Meaning |
+|---|---|---|
+| `INVALID_NUMBER` | No | Number was rejected by the carrier as malformed or unreachable |
+| `PROVIDER_REJECTED` | No | Telephony provider refused to place the call (geo block, balance, etc.) |
+| `PROVIDER_UNAVAILABLE` | Yes | Provider was temporarily unreachable |
+| `NO_ANSWER` | No | Call rang out without being picked up |
+| `BUSY` | Yes | Recipient line was busy |
+| `AGENT_FAILED_TO_JOIN` | Yes | The voice agent didn't join the room in time |
+| `LIVEKIT_ERROR` | Yes | Underlying LiveKit session failed |
+| `TIMEOUT` | Yes | Operation exceeded its time budget |
+| `INTERNAL_ERROR` | Yes | Unexpected failure inside DronaHQ |
+
+Retriable codes are attempted again automatically up to the retry budget; non-retriable codes terminate the call as `failed` immediately.

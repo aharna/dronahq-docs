@@ -1,0 +1,90 @@
+---
+sidebar_position: 1
+title: "Introduction"
+---
+
+import Thumbnail from '@site/src/components/Thumbnail';
+
+# Voice Agent Telephony
+
+Voice Agent Telephony lets your AI agent **place and receive real phone calls** over the public telephone network.
+
+Once a phone number is connected, your agent can talk to customers exactly like a human would — answer questions, qualify leads, confirm appointments, run surveys, or place outbound follow-up calls — using natural voice on either end of the line.
+
+This section walks you through every step a non-developer needs to connect a phone number or SIP trunk to a DronaHQ voice agent.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/overview.png" alt="Voice Agent Telephony Overview" width='80%'/>
+  <figcaption align="center"><i>How phone numbers connect to your voice agent</i></figcaption>
+</figure>
+
+
+## Three Ways to Connect
+
+DronaHQ supports three connection types. Pick the one that matches what you already have.
+
+| Connection | Best for | What you need |
+|---|---|---|
+| **Twilio phone number** | Teams starting fresh or already on Twilio | Twilio account, a purchased Twilio number, Account SID + Auth Token |
+| **Plivo phone number** | Teams starting fresh or already on Plivo | Plivo account, a purchased Plivo number, Auth ID + Auth Token |
+| **SIP Trunking** | Teams with an existing SIP trunk (Twilio Elastic SIP, Plivo Zentrunk, or any other carrier) | A configured SIP trunk on your carrier, gateway host, transport, and digest credentials |
+
+:::tip
+If you don't have any telephony setup yet, the fastest path is a **phone number** from Twilio or Plivo — three credentials and you're live.
+:::
+
+
+## What Each Provider Supports
+
+| Capability | Twilio | Plivo | SIP Trunking |
+|---|---|---|---|
+| Outbound calls | ✅ Yes | ✅ Yes | ✅ Yes |
+| Inbound calls | 🚧 Coming soon | 🚧 Coming soon | 🚧 Coming soon |
+| SMS | ✅ Yes | ✅ Yes | — |
+| Blind transfer | ✅ Yes | ✅ Yes | ✅ Yes (SIP REFER) |
+| Warm transfer | ✅ Yes | 🚧 Coming soon | 🚧 Coming soon |
+| Machine detection (AMD) | ✅ Yes | ✅ Yes | — |
+| DTMF (keypad input) | ✅ Yes | ✅ Yes | ✅ Yes |
+| Carrier-side recording | ✅ Yes | ✅ Yes | ✅ Yes |
+
+:::info
+Inbound calls are coming soon across all providers. The current release focuses on **outbound** scenarios — your agent places the call, the recipient picks up.
+:::
+
+
+## High-Level Setup Flow
+
+The setup follows the same five steps for every provider:
+
+1. **Get an account** with Twilio, Plivo, or your SIP carrier.
+2. **Purchase or provision a phone number** on that account.
+3. **Collect credentials** (Account SID + Auth Token, Auth ID + Auth Token, or SIP gateway + digest credentials).
+4. **Add the number in DronaHQ** under **Voice Agent → Phone Numbers → Add Phone Number**.
+5. **Attach the number to a voice agent** and place a test call.
+
+
+## When Should I Use a Phone Number vs SIP Trunking?
+
+Use a **phone number** when:
+
+- You're just getting started
+- You want the quickest path to a working agent
+- You don't already operate a SIP trunk
+
+Use **SIP Trunking** when:
+
+- You already have a SIP trunk through Twilio, Plivo, or another carrier
+- You want to keep using your existing carrier contract or rates
+- Your calls need to flow through existing infrastructure (PBX, IVR, recording, etc.)
+- You're bringing a phone number that's already provisioned on a SIP trunk
+
+
+## What's Next
+
+Start with the provider you have credentials for:
+
+- [Twilio Phone Number](/agents/voice-agent/telephony/phone-numbers/twilio)
+- [Plivo Phone Number](/agents/voice-agent/telephony/phone-numbers/plivo)
+- [SIP Trunking — Introduction](/agents/voice-agent/telephony/sip-trunks/introduction)
+- [SIP Trunking with Twilio](/agents/voice-agent/telephony/sip-trunks/twilio)
+- [SIP Trunking with Plivo](/agents/voice-agent/telephony/sip-trunks/plivo)

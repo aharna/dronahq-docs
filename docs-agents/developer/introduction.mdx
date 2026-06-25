@@ -1,0 +1,24 @@
+---
+sidebar_position: 1
+title: "Introduction"
+---
+
+# Developer
+
+The Developer section gives you two things: a way to **authenticate API traffic** to your agents, and a way to **see what that traffic did**. Both surfaces are **workspace-wide** and work across every agent type — **Agent**, **Data Agent**, and **Voice Agent**.
+
+| Surface | What it is | When to use |
+|---|---|---|
+| **API Keys** | A secret token (`sk_...`) scoped to one or more agent types and (optionally) specific agents | Calling DronaHQ APIs from your backend, scripts, or third-party tools |
+| **Request Logs** | A 30-day rolling feed of every API request authenticated by your keys | Debugging integrations, auditing usage, investigating errors |
+
+A typical setup looks like this:
+
+1. Create an API key with the smallest set of scopes the integration needs.
+2. Use the key from your application via the **`api-key`** header.
+3. When something doesn't behave as expected, open **Request Logs** and filter by that key to see exactly which calls hit DronaHQ and how they responded.
+
+## What's Next
+
+- [API Keys](/agents/developer/api-keys) — create, scope, and manage tokens that authenticate your API calls
+- [Request Logs](/agents/developer/request-logs) — inspect, filter, and troubleshoot every authenticated request

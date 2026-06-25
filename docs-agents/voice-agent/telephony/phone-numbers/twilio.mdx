@@ -1,0 +1,167 @@
+---
+sidebar_position: 1
+title: "Twilio"
+---
+
+import Thumbnail from '@site/src/components/Thumbnail';
+
+# Twilio Phone Number
+
+Import a phone number directly from your Twilio account and connect it to a DronaHQ voice agent.
+
+This is the **fastest way** to give your agent a real phone number. You paste three pieces of information from your Twilio Console and DronaHQ takes care of the rest.
+
+
+## Overview
+
+When the setup is complete:
+
+1. Your agent has a real, callable Twilio phone number attached.
+2. The agent can **place outbound calls** to any phone number.
+3. Calls are routed through Twilio using your own Twilio credentials.
+4. You can attach the same number to any voice agent in your workspace.
+
+
+## When to Use This
+
+Use the Twilio phone number flow when:
+
+- You already use Twilio (or want to start there)
+- You want a working agent in minutes
+- You don't already operate a SIP trunk
+
+If you have an existing Twilio Elastic SIP Trunk and want to route calls through it, use [SIP Trunking with Twilio](/agents/voice-agent/telephony/sip-trunks/twilio) instead.
+
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+- An active [Twilio account](https://www.twilio.com)
+- At least one **voice-capable** phone number purchased in your Twilio account
+- Your **Twilio Account SID** and **Twilio Auth Token** (covered in Step 1 below)
+
+
+## Configure a Twilio Number
+
+### Step 1: Locate your Twilio credentials
+
+1. Sign in to the [Twilio Console](https://console.twilio.com).
+2. Open **Account → API keys & tokens**.
+3. Copy your **Account SID** — it looks like `AC...` followed by a long string.
+4. Click **Show** next to **Auth Token**, then copy it.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/twilio-credentials.png" alt="Twilio Account SID and Auth Token" width='90%'/>
+  <figcaption align="center"><i>Locating Account SID and Auth Token in the Twilio Console</i></figcaption>
+</figure>
+
+:::warning
+Treat the **Auth Token** like a password. Anyone with this token can place calls and send SMS messages on your Twilio account. Never share it in screenshots, support tickets, or public channels.
+:::
+
+
+### Step 2: Open the Add Phone Number flow in DronaHQ
+
+1. Go to **DronaHQ → Voice Agent → Phone Numbers**.
+2. Click **Add Phone Number**.
+3. From the provider list on the left, select **Twilio**.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/twilio-add-number.png" alt="Add Phone Number — Twilio" width='90%'/>
+  <figcaption align="center"><i>Choosing Twilio as the provider</i></figcaption>
+</figure>
+
+
+### Step 3: Enter your Twilio details
+
+Fill in the form with the values you collected:
+
+#### Twilio Phone Number
+- Paste the phone number in **E.164 format** (the international format with `+` and country code).
+- Examples: `+14155551234`, `+919876543210`, `+442071838750`.
+- This must be a number you have already purchased in your Twilio account.
+- **Required field**.
+
+#### Twilio Account SID
+- Paste the **Account SID** copied from the Twilio Console.
+- It begins with `AC`.
+- **Required field**.
+
+#### Twilio Auth Token
+- Paste the **Auth Token** copied from the Twilio Console.
+- The token is **encrypted** before it is saved and is never displayed again.
+- **Required field**.
+
+Click **Import from Twilio**.
+
+
+
+
+### Step 4: Verification
+
+DronaHQ contacts Twilio with the credentials you provided and confirms that:
+
+- The credentials are valid
+- The number actually belongs to that Twilio account
+- The number is voice-capable
+
+On success you'll see the toast **"Phone number imported from Twilio"** and the number appears in your **Phone Numbers** list along with its detected capabilities (Voice, SMS, MMS, Fax).
+
+:::info
+If you only see a "Voice" badge, that number cannot send SMS. To enable SMS, check the number's settings in the Twilio Console.
+:::
+
+
+### Step 5: Attach the number to a voice agent
+
+1. Open the voice agent you want to attach this number to.
+2. In the right-side panel, expand **Call Configuration → Outbound Settings**.
+3. From the **Outbound Phone Number** dropdown, select the Twilio number you just imported.
+
+The selected number is now used as the **caller ID** for outbound calls placed by this agent.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/twilio-attach-agent.png" alt="Select outbound phone number in the agent's Call Configuration" width='90%'/>
+  <figcaption align="center"><i>Selecting the imported number under Call Configuration → Outbound Settings</i></figcaption>
+</figure>
+
+
+## Testing Your Setup
+
+Place a test outbound call from the same panel you used to attach the number:
+
+1. With the agent open, stay in **Call Configuration → Outbound Settings**.
+2. Confirm the **Outbound Phone Number** dropdown shows the Twilio number you just imported.
+3. In the destination field next to it, enter your own mobile number in **E.164 format** (e.g. `+14155551234`).
+4. Click **Call**.
+5. Pick up — you should hear the agent speak.
+
+:::info
+Inbound calls (someone calling **into** your Twilio number) are coming soon. For now, all production traffic should be **outbound** — your agent calls the recipient.
+:::
+
+
+## Troubleshooting
+
+| Problem | Likely cause | Fix |
+|---|---|---|
+| "Number not found in your Twilio account" | Wrong account selected, or number not purchased yet | Double-check the Account SID is from the same Twilio project as the number |
+| "Invalid credentials" | Auth Token was rotated, or copied with extra spaces | Copy the Auth Token again from the Twilio Console — make sure no leading/trailing whitespace |
+| Number is added but missing **Voice** capability | The number is SMS-only or fax-only | Pick a voice-capable number in Twilio, or upgrade the existing number's capabilities |
+| Call placed but recipient never gets it | Geo-permissions blocked in Twilio | Enable the destination country under **Voice → Settings → Geo-permissions** in the Twilio Console |
+
+
+## Best Practices
+
+- Use a **separate Twilio sub-account** per environment (development, staging, production) so test calls never hit real customers.
+- Rotate your **Auth Token** if you ever suspect it has been exposed.
+- Set a **billing alert** in Twilio so you're notified before unexpected call volume burns through your balance.
+- Pick a number whose **country and area code match your audience** to improve answer rates.
+
+
+## What's Next
+
+- [Plivo Phone Number](/agents/voice-agent/telephony/phone-numbers/plivo) — connect a Plivo number using the same flow
+- [SIP Trunking with Twilio](/agents/voice-agent/telephony/sip-trunks/twilio) — route this number through an existing Twilio Elastic SIP Trunk
+- [Telephony Introduction](/agents/voice-agent/telephony/introduction) — back to the overview

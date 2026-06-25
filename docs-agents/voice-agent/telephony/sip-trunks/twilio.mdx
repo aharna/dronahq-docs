@@ -1,0 +1,213 @@
+---
+sidebar_position: 2
+title: "Twilio"
+---
+
+import Thumbnail from '@site/src/components/Thumbnail';
+
+# SIP Trunking with Twilio
+
+Connect a **Twilio Elastic SIP Trunk** to DronaHQ so your voice agent can place outbound calls through it. Use this guide when you already have a SIP trunk on Twilio — for example, a trunk you provisioned for your call centre, PBX, or contact platform — and want your agent to share that trunk.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/sip-trunk-twilio-overview.png" alt="SIP Trunking with Twilio" width='80%'/>
+  <figcaption align="center"><i>Outbound calls flowing through a Twilio Elastic SIP Trunk</i></figcaption>
+</figure>
+
+
+## When to Use This
+
+Use this flow when:
+
+- You already operate a Twilio Elastic SIP Trunk
+- You want your voice agent to share an existing trunk with your other telephony systems
+- You want to keep your existing Twilio rates / contract for these calls
+
+If you only want a quick Twilio number with no trunk involvement, use the [Twilio Phone Number](/agents/voice-agent/telephony/phone-numbers/twilio) flow instead.
+
+
+## Prerequisites
+
+- A Twilio account with **Elastic SIP Trunking** enabled
+- At least one phone number purchased in Twilio
+- (Optional) The Twilio CLI installed — every step below shows both the Console path and the equivalent CLI command
+
+
+## Configure the Twilio Side
+
+### Step 1: Create the SIP trunk in Twilio
+
+**Using the Console**
+
+1. Open the [Twilio Console](https://console.twilio.com).
+2. Go to **Elastic SIP Trunking → Manage → Trunks**.
+3. Click **Create new SIP Trunk**.
+4. Give it a friendly name (e.g., `dronahq-voice-trunk`).
+5. Twilio assigns a **Termination URI** ending in `pstn.twilio.com` — write it down. This is the **SIP Gateway Host** you'll paste into DronaHQ later.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/twilio-sip-trunk-create.png" alt="Create SIP Trunk in Twilio" width='90%'/>
+  <figcaption align="center"><i>Creating a new Elastic SIP Trunk</i></figcaption>
+</figure>
+
+**Using the CLI**
+
+```bash
+twilio api trunking v1 trunks create \
+  --friendly-name "dronahq-voice-trunk" \
+  --domain-name "dronahq-voice-trunk.pstn.twilio.com"
+```
+
+Save the returned **Trunk SID** — you'll need it for the next CLI steps.
+
+
+### Step 2: Create a credential list (digest auth)
+
+Twilio uses **digest authentication** to verify outbound traffic on your trunk. You'll create a credential list, set a username and password, and attach the list to the trunk.
+
+1. Console: **Elastic SIP Trunking → Manage → Credential lists → Create new credential list**.
+2. Pick a name like `dronahq-credentials`.
+3. Add a credential with a **username** and a **strong password**.
+4. Open your trunk → **Termination → Authentication → Credential Lists** → select the credential list you just created → **Save**.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/twilio-sip-credential-list.png" alt="Twilio Credential List" width='90%'/>
+  <figcaption align="center"><i>Attaching a credential list to the trunk's termination settings</i></figcaption>
+</figure>
+
+These two values become **SIP Auth Username** and **SIP Auth Password** in DronaHQ.
+
+:::warning
+Use a strong password. The credentials authorise outbound calls on your Twilio account — a leaked password can lead to toll fraud.
+:::
+
+
+### Step 3: Attach phone numbers to the trunk
+
+**Using the Console**
+
+1. Open the trunk → **Numbers → Add Existing Numbers**.
+2. Select one or more phone numbers from your Twilio account.
+3. **Save**.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/twilio-sip-attach-numbers.gif" alt="Attach numbers to Twilio trunk" width='90%'/>
+  <figcaption align="center"><i>Attaching phone numbers to the trunk</i></figcaption>
+</figure>
+
+**Using the CLI**
+
+```bash
+twilio api trunking v1 trunks phone-numbers create \
+  --trunk-sid <twilio_trunk_sid> \
+  --phone-number-sid <twilio_phone_number_sid>
+```
+
+
+### Step 4: Decide on transport
+
+| Transport | Port | Recommended for |
+|---|---|---|
+| **UDP** | 5060 | Development, lab testing |
+| **TLS** | 5061 | Production traffic — required when **Secure Trunking** is enabled on the trunk |
+
+:::tip
+For production, enable **Secure Trunking** on your Twilio trunk (Twilio Console → trunk → **General Settings → Secure Trunking**) and use **TLS + port 5061** when you add the trunk in DronaHQ.
+:::
+
+
+## Configure the DronaHQ Side
+
+### Step 5: Add the SIP trunk in DronaHQ
+
+1. Go to **DronaHQ → Voice Agent → SIP Trunks**.
+2. Click **Add SIP Trunk**.
+3. Fill in the form using the values you gathered from Twilio:
+
+#### Label
+- A friendly name for the trunk in DronaHQ.
+- Examples: `Production Twilio trunk`, `EU Outbound Trunk`.
+- Optional but recommended — makes it easier to pick the right trunk in later steps.
+
+#### SIP Gateway Host
+- The Termination URI hostname from Twilio (without the `sip:` prefix).
+- Example: `dronahq-voice-trunk.pstn.twilio.com`.
+- **Required field**.
+
+#### Port
+- `5060` for UDP/TCP, or `5061` for TLS.
+- The port auto-updates to `5061` if you pick TLS.
+
+#### Transport
+- Pick **UDP**, **TCP**, or **TLS**.
+- Use TLS for production traffic.
+
+#### SIP Auth Username
+- The **username** from the Twilio credential list you created in Step 2.
+- **Required field**.
+
+#### SIP Auth Password
+- The **password** from the Twilio credential list.
+- The password is **encrypted** before it is saved and is never displayed again.
+- **Required field**.
+
+Click **Add SIP Trunk**.
+
+<figure>
+  <Thumbnail src="/img/agent-telephony/dhq-add-sip-trunk-twilio.png" alt="Add SIP Trunk in DronaHQ" width='70%'/>
+  <figcaption align="center"><i>Filling in Twilio trunk details in DronaHQ</i></figcaption>
+</figure>
+
+:::warning
+The **SIP Auth Password** cannot be displayed again after you save. If you lose it, regenerate the credential in Twilio and update the trunk in DronaHQ.
+:::
+
+
+### Step 6: Add a phone number that uses this trunk
+
+1. Go to **DronaHQ → Voice Agent → Phone Numbers**.
+2. Click **Add Phone Number**.
+3. Select **SIP Trunking** from the provider list.
+4. Enter the phone number in **E.164 format** (e.g., `+14155551234`) — this must already be attached to the Twilio trunk you configured in Step 3.
+5. Pick the SIP trunk you just added from the **SIP Trunk** dropdown.
+6. Click **Add BYO SIP Number**.
+
+The number now appears in the Phone Numbers list, routed through your Twilio trunk.
+
+
+### Step 7: Attach the number to a voice agent and place a test call
+
+1. Open the voice agent you want this trunk number to call from.
+2. In the right-side panel, expand **Call Configuration → Outbound Settings**.
+3. From the **Outbound Phone Number** dropdown, select the trunk number you added in Step 6.
+4. In the destination field next to it, enter your own mobile number in **E.164 format** (e.g., `+14155551234`).
+5. Click **Call** and pick up — you should hear the agent speak.
+
+The call leg on Twilio's side will appear in your Twilio call logs against the trunk.
+
+
+## Troubleshooting
+
+| Problem | Likely cause | Fix |
+|---|---|---|
+| Twilio returns `401 Unauthorized` for outbound calls | Wrong digest username or password | Re-check the credential list values; re-enter the password in DronaHQ |
+| Calls connect but drop after a few seconds with TLS | Secure Trunking is not actually enabled on the trunk, or port is `5060` instead of `5061` | Enable Secure Trunking in Twilio and set port `5061` in DronaHQ |
+| Twilio rejects with `403 Forbidden` from a specific geo | Geo-permissions block | Enable the destination country in Twilio's **Voice → Settings → Geo-permissions** |
+| Phone number rejected on **Add Phone Number** | The number isn't attached to the trunk yet | Go back to Twilio Console → trunk → **Numbers → Add Existing Numbers** |
+| Trunk visible but greyed out | Trunk record is incomplete (missing gateway / username) | Open **Voice Agent → SIP Trunks**, edit the trunk, and resave |
+
+
+## Best Practices
+
+- Use a **separate trunk per environment** (dev, staging, production) so test traffic never hits production carrier rates or real customers.
+- **Rotate credentials** if a password is ever exposed — update the trunk in both Twilio and DronaHQ.
+- Enable **Secure Trunking** with TLS for any trunk that handles real customer calls.
+- Set a **call-rate alert** in Twilio so you're notified of unusual traffic spikes.
+- Keep the trunk's **Termination URI** stable — changing it requires updating DronaHQ's **SIP Gateway Host** to match.
+
+
+## What's Next
+
+- [SIP Trunking with Plivo](/agents/voice-agent/telephony/sip-trunks/plivo) — same flow for Plivo Zentrunk
+- [Twilio Phone Number](/agents/voice-agent/telephony/phone-numbers/twilio) — non-trunk Twilio import flow
+- [SIP Trunking — Introduction](/agents/voice-agent/telephony/sip-trunks/introduction) — back to the SIP overview

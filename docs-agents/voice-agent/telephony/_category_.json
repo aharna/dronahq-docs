@@ -1,0 +1,8 @@
+{
+    "label": "Telephony",
+    "position": 1,
+    "link": {
+        "type": "generated-index",
+        "description": "Configure telephony providers for your voice agents."
+    }
+}
