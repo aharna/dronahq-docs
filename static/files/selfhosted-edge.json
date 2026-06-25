@@ -1,4 +1,26 @@
 [
+  {
+    "timestamp":1781849762000,
+    "tags": [
+      "Self-Hosted",
+      "3.10.2-edge"
+    ],
+    "heading": "Version 3.10.2-edge",
+    "cards": [
+      {
+        "title": "Added",
+        "type": "added",
+        "points": ["Added support for Vibe Coding to streamline and enhance the development experience."]
+      },
+      {
+        "title":"Fixed",
+        "type":"fixed",
+        "points":[
+          "Fixed a security vulnerability where folder IDs could be deleted without validating the associated channel."
+        ]
+      }
+    ]
+  },
    {
     "timestamp":1778750068000,
     "tags": [
@@ -18,6 +40,9 @@
         "title":"Fixed",
         "type":"fixed",
         "points":[
+          "Fixed an issue where Automation Flows DQ records were incorrectly exposed in the main DQ view.",
+"Fixed an issue affecting dropdown options across various Studio Actions.",
+"Fixed an issue where the screen size would increase but not decrease correctly when resizing the window.",
           "Fixed an issue where SCIM user creation could fail when the emails array was undefined.",
 "Fixed an issue where bulk user uploads via Excel could trigger unexpected container restarts.",
 "Fixed an issue where action flows were being triggered automatically on page open."
@@ -47,14 +72,14 @@
 "Added a new onboarding flow for self-hosted environments.",
 
 "Added catalog deletion functionality with validation to prevent invalid deletions."
+
         ]
       },
       {
         "title":"Enhancements",
         "type": "improved",
         "points": [
-          "Enhanced system security by addressing vulnerabilities in ClickHouse integration to improve safety and reliability."
-,
+          "Enhanced system security by addressing vulnerabilities in ClickHouse integration to improve safety and reliability.",
          "Enhanced automation search functionality to include matching by automation ID.",
 
 "Enhanced screen scrolling behavior when the left sidebar is opened and improved handling of the Add Task popup for empty action flows.",
@@ -66,6 +91,8 @@
         "title": "Fixed",
         "type": "fixed",
         "points":[
+          "Fixed an issue with nested variable keyword mapping in the JavaScript editor.",
+"Fixed an issue where body values were not being sent correctly in REST API tasks within Automation.",
           "Fixed an issue where duplicate import URLs appeared in the UI when adding widgets with existing libraries.",
 "Fixed an issue where default selection did not work correctly in nested controls.",
 "Fixed an issue where the query appeared blank when opening DQ in certain cases.",
