@@ -1,5 +1,3 @@
-# Campaigns Quickstart
-
 ---
 sidebar_position: 7
 title: "Quickstart"
@@ -24,6 +22,11 @@ Before you begin, ensure you have:
 - An existing voice **Agent** configured and ready to handle calls. Note that only **published agents** and **published changes** to the voice agent will be reflected during calls.
 - Recipient information ready as a CSV file (up to **5 MB**).
 
+<figure align ="center">
+  <Thumbnail src="/img/agent-campaign/add-campaign.png" alt="Add Campaign" />
+  <figcaption align ="center"><i>Add Campaign</i></figcaption>
+</figure>
+
 ## 1. Create a Campaign
 
 ### Open New Campaign
@@ -34,9 +37,9 @@ Navigate to **Campaigns** and click **New Campaign** to open the campaign setup 
 
 Provide the following information:
 
-- **Campaign name*** — Give the campaign a descriptive name (e.g., **"DHQ Campaign"**).
-- **Phone Number*** — Select the number the calls will be placed from, or click **+ Add number** to register a new one.
-- **Select Agent*** — Choose the voice agent that will conduct the calls.
+- **Campaign name***: Give the campaign a descriptive name (e.g., **"DHQ Campaign"**).
+- **Phone Number***: Select the number the calls will be placed from, or click **+ Add number** to register a new one.
+- **Select Agent***: Choose the voice agent that will conduct the calls.
 
 ### Upload your contact list
 
@@ -45,7 +48,10 @@ Provide the following information:
 - Once uploaded, a **CSV Preview** panel appears on the right showing the parsed contacts (e.g., `contact_number`, `name`, `another_var`) along with a row count.
 - Only valid rows are triggered—rows with malformed data are skipped automatically.
 
-> **Format requirement:** The mobile number column must be in **E.164** format, with a leading `+` and country code (for example, `+14155551234`).
+:::info 
+While adding phone numbers in the CSV, mobile number column must be in **E.164** format, with a leading `'+` and country code. For example, prefix Indian phone numbers with `'+91` (e.g., `'+919876543210`).
+:::
+
 
 ## 2. Configure Call Settings
 
@@ -61,19 +67,21 @@ Enable **Auto-retry unconnected calls** to automatically redial contacts who wer
 
 Configure the following options:
 
-- **Retry on** — Choose the outcomes that should trigger a retry, such as **No Answer** or **Busy**.
-- **Maximum retry attempts** — Set how many times a contact should be redialed.
-- **Retry intervals (minutes)** — Define the wait time before each retry attempt (e.g., Retry #1 after *N* minutes).
+- **Retry on**: Choose the outcomes that should trigger a retry, such as **No Answer** or **Busy**.
+- **Maximum retry attempts**: Set how many times a contact should be redialed.
+- **Retry intervals (minutes)**: Define the wait time before each retry attempt (e.g., Retry #1 after *N* minutes).
 
 ## 3. Schedule the Campaign
 
 Configure when the campaign should run:
 
-- **Timezone** — Select the appropriate timezone (e.g., **IST — India Standard Time (UTC +5:30)**).
-- **Start date & time** — Pick when the campaign should begin.
-- **Calling window** — Set the daily **From** and **To** times during which calls are allowed to go out (e.g., **08:00 AM to 08:00 PM**).
+- **Timezone**: Select the appropriate timezone (e.g., **IST: India Standard Time (UTC +5:30)**).
+- **Start date & time**: Pick when the campaign should begin.
+- **Calling window**: Set the daily **From** and **To** times during which calls are allowed to go out (e.g., **08:00 AM to 08:00 PM**).
 
-> **Note:** If scheduling is left disabled, the campaign launches immediately after creation instead of waiting for a start time.
+:::note 
+If scheduling is left disabled, the campaign launches immediately after creation instead of waiting for a start time.
+:::
 
 ## 4. Launch the Campaign
 

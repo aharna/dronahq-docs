@@ -1,4 +1,18 @@
 [
+  { "timestamp": 1783482856000,
+    "tags": ["Self-Hosted", "3.9.13-stable"],
+    "heading": "Version 3.9.13-stable",
+    "cards" : [
+    
+      { "title":"Enhancements",
+        "type": "improved",
+        "points": [
+          "Enhanced SSO to support multiple domains for JIT authentication and bulk user uploads."
+        ]
+      }
+    ]
+  },
+
    { "timestamp": 1781849762000,
     "tags": ["Self-Hosted", "3.9.12-stable"],
     "heading": "Version 3.9.12-stable",

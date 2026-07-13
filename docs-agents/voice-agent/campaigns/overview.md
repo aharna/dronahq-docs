@@ -14,6 +14,11 @@ import Thumbnail from '@site/src/components/Thumbnail';
 
 The Campaign Overview page is the results dashboard for a completed or in-progress campaign. It surfaces high-level performance metrics alongside a searchable, call-by-call breakdown—including recordings, transcripts, and end reasons—so you can quickly gauge how well a campaign performed and drill into individual calls when needed.
 
+<figure align ="center">
+  <Thumbnail src="/img/agent-campaign/campaign-overview.png" alt="Campaign Logs Overview" />
+  <figcaption align ="center"><i> Campaign Logs Overview </i></figcaption>
+</figure>
+
 ### Key benefits
 
 - **At-a-glance metrics:** Instantly see total calls, ended calls, pick-up rate, and voicemail count for a campaign.
@@ -32,27 +37,29 @@ At the top of the page, each campaign displays four key summary tiles:
 | **Picked Up Calls** | Calls where the recipient answered and the agent connected. |
 | **Voicemail Calls** | Calls that were routed to or detected as voicemail. |
 
-> **Note:** Use the refresh icon near the search bar to pull the latest counts while a campaign is still running.
+:::note
+Use the refresh icon near the search bar to pull the latest counts while a campaign is still running.
+:::
 
 ## Call log table
 
 Below the summary tiles, the call log lists every call placed in the campaign with the following columns:
 
-- **Call ID** — Unique identifier for the call; use the **Search by Call ID** field to look up a specific record.
-- **Number** — The recipient's phone number that was dialed.
-- **Recording** — Play the call audio inline or download the recording file.
-- **Transcript** — Download a text transcript of the conversation.
-- **Type** — The call direction (e.g., **Outbound**, **Web**).
-- **End Reason** — Why the call ended, such as:
-  - `carrier-hangup` — The recipient's carrier or device ended the call.
-  - `agent-ended-call` — The voice agent ended the call after completing its objective.
-  - `no-answer` — The call was not picked up.
-- **Status** — The final outcome of the call:
-  - `COMPLETED` — The call connected and ran to completion.
-  - `FAILED` — The call did not connect (e.g., no answer).
-- **Start Time** — Date and time the call was initiated.
-- **Duration** — Length of the call (e.g., `25s`, `1m 30s`); failed calls show `0s`.
-- **Credits** — The number of platform credits consumed by the call.
+- **Call ID**: Unique identifier for the call; use the **Search by Call ID** field to look up a specific record.
+- **Number**: The recipient's phone number that was dialed.
+- **Recording**: Play the call audio inline or download the recording file.
+- **Transcript**: Download a text transcript of the conversation.
+- **Type**: The call direction (e.g., **Outbound**, **Web**).
+- **End Reason**: Why the call ended, such as:
+  - `carrier-hangup`: The recipient's carrier or device ended the call.
+  - `agent-ended-call`: The voice agent ended the call after completing its objective.
+  - `no-answer`: The call was not picked up.
+- **Status**: The final outcome of the call:
+  - `COMPLETED`: The call connected and ran to completion.
+  - `FAILED`: The call did not connect (e.g., no answer).
+- **Start Time**: Date and time the call was initiated.
+- **Duration**: Length of the call (e.g., `25s`, `1m 30s`); failed calls show `0s`.
+- **Credits**: The number of platform credits consumed by the call.
 
 ## Reviewing individual calls
 
@@ -68,13 +75,18 @@ Below this summary, the call is broken down into the following tabs:
 
 The full text transcript of the conversation between the caller and the voice agent, turn by turn.
 
+<figure align ="center">
+  <Thumbnail src="/img/agent-campaign/transcripts.png" alt="Transcripts" />
+  <figcaption align ="center"><i> Transcripts</i></figcaption>
+</figure>
+
 ### Logs
 
-A chronological, technical log of everything that happened during the call—useful for debugging call flow, agent decisions, and system events.
+A chronological, technical log of everything that happened during the call, useful for debugging call flow, agent decisions, and system events.
 
 ### Structured Outputs
 
-Any structured data (e.g., JSON fields) extracted by the agent during the call—such as captured answers, classifications, or values pulled from the conversation for downstream use.
+Any structured data (e.g., JSON fields) extracted by the agent during the call, such as captured answers, classifications, or values pulled from the conversation for downstream use.
 
 ### Messages
 
@@ -86,15 +98,20 @@ A breakdown of response latency at each stage of the call pipeline, helping iden
 
 ### Call Cost
 
+<figure align ="center">
+  <Thumbnail src="/img/agent-campaign/call-cost.png" alt="Call Cost" />
+  <figcaption align ="center"><i> Call Cost</i></figcaption>
+</figure>
+
 A detailed **Cost Breakdown** for the call, including:
 
 - Total **Credits** consumed and call **Duration**.
 - A visual donut chart showing the proportion of credits spent per category.
 - A per-category breakdown across up to four cost centers:
-  - **Transcriber (STT)** — Speech-to-text processing costs, including provider, model, and duration.
-  - **Model (LLM)** — Language model processing costs, including provider, model, input tokens, and output tokens.
-  - **Voice (TTS)** — Text-to-speech costs, including provider, model, and character count.
-  - **Structured Output** — Cost of extracting structured data, including provider, model, input tokens, and output tokens.
+  - **Transcriber (STT)**: Speech-to-text processing costs, including provider, model, and duration.
+  - **Model (LLM)**: Language model processing costs, including provider, model, input tokens, and output tokens.
+  - **Voice (TTS)**: Text-to-speech costs, including provider, model, and character count.
+  - **Structured Output**: Cost of extracting structured data, including provider, model, input tokens, and output tokens.
 
 Each category can be toggled on/off to isolate its contribution, and costs can be viewed either in **Credits** or **Quantity** (raw units like tokens/characters) using the toggle at the top of the panel.
 
